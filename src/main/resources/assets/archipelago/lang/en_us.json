@@ -1,0 +1,19 @@
+{
+  "block.archipelago.astral_vase": "Astral Vase",
+  "block.archipelago.decorative_vase": "Astral Vase",
+
+  "block.archipelago.crystal_log": "Crystal Log",
+  "block.archipelago.crystal_wood": "Crystal Wood",
+  "block.archipelago.stripped_crystal_log": "Stripped Crystal Log",
+  "block.archipelago.stripped_crystal_wood": "Stripped Crystal Wood",
+  "block.archipelago.crystal_planks": "Crystal Planks",
+  "block.archipelago.crystal_leaves": "Crystal Leaves",
+  "block.archipelago.crystal_sapling": "Crystal Sapling",
+
+  "item.archipelago.starweaver": "✦ Starweaver ✦",
+
+  "itemgroup.archipelago.archipelago_group": "Astray Archipelago",
+
+  "death.attack.compression": "%1$s literally reached for the stars",
+  "death.attack.compression.player": "%1$s literally reached for the stars"
+}

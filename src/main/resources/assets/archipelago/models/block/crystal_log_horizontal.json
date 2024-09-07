@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "archipelago:block/crystal_log_top",
+    "side": "archipelago:block/crystal_log"
+  }
+}

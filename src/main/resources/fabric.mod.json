@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "archipelago",
+	"version": "${version}",
+	"name": "archipelago",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"e.everest"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "DONT STEAL MY SHIT (D.S.M.S) V1.0.0",
+	"icon": "assets/archipelago/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "com.thatoneaiguy.archipelago.Archipelago"
+		],
+		"client": [
+			"com.thatoneaiguy.archipelago.ArchipelagoClient"
+		]
+	},
+	"mixins": [
+		"archipelago.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.7",
+		"minecraft": "~1.19.2",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

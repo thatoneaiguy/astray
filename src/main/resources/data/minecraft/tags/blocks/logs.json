@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "archipelago:crystal_log",
+    "archipelago:stripped_crystal_log",
+    "archipelago:crystal_wood",
+    "archipelago:stripped_crystal_wood"
+  ]
+}
