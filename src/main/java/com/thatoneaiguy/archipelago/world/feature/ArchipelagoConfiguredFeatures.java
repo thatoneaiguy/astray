@@ -21,9 +21,9 @@ public class ArchipelagoConfiguredFeatures {
     public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> CRYSTAL_TREE =
             ConfiguredFeatures.register("crystal_tree", Feature.TREE, new TreeFeatureConfig.Builder(
                     BlockStateProvider.of(ArchipelagoBlocks.CRYSTAL_LOG),
-                    new StraightTrunkPlacer(4, 2, 3),
+                    new BendingTrunkPlacer(4, 2, 0, 3, UniformIntProvider.create(1, 2)),
                     BlockStateProvider.of(ArchipelagoBlocks.CRYSTAL_LEAVES),
-                    new AcaciaFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0)),
+                    new AcaciaFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0)),
                     new TwoLayersFeatureSize(1, 0, 2)).build());
 
     public static final RegistryEntry<PlacedFeature> CRYSTAL_CHECKED = PlacedFeatures.register("crystal_checked",

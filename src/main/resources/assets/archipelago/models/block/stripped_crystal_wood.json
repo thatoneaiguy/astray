@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "archipelago:block/stripped_crystal_log",
+    "side": "archipelago:block/stripped_crystal_log"
+  }
+}

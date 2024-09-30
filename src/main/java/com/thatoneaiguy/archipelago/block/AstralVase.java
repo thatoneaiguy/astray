@@ -37,7 +37,7 @@ public class AstralVase extends HorizontalFacingBlock {
 
     public AstralVase(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((((BlockState) this.stateManager.getDefaultState()).with(GENERATED, true)));
+        this.setDefaultState((((BlockState) this.stateManager.getDefaultState()).with(GENERATED, false)));
     }
 
     //added by winter to test if this would fix the model's renderer being bugged

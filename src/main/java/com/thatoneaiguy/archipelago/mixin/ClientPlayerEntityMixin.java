@@ -1,6 +1,6 @@
 package com.thatoneaiguy.archipelago.mixin;
 
-import com.mojang.authlib.GameProfile;
+/*import com.mojang.authlib.GameProfile;
 import com.thatoneaiguy.archipelago.render.IAstrayAnimatedPlayer;
 import dev.kosmx.playerAnim.api.layered.IAnimation;
 import dev.kosmx.playerAnim.api.layered.ModifierLayer;
@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 
 @Mixin(AbstractClientPlayerEntity.class)
 public class ClientPlayerEntityMixin implements IAstrayAnimatedPlayer {
@@ -30,3 +31,4 @@ public class ClientPlayerEntityMixin implements IAstrayAnimatedPlayer {
         return astrayAnimationContainer;
     }
 }
+*/

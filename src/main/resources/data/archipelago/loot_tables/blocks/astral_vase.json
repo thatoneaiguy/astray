@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "archipelago:decorative_vase"
+          "name": "archipelago:astral_vase"
         }
       ],
       "conditions": [
@@ -88,10 +88,6 @@
     {
       "rolls": 2,
       "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "archipelago:enigma_shard"
-        },
         {
           "type": "minecraft:item",
           "name": "minecraft:enchanted_golden_apple"

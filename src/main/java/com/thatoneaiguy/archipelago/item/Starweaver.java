@@ -42,9 +42,12 @@ public class Starweaver extends SwordItem {
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 
         if ( entity.getHandItems().equals(ArchipelagoItems.STARWEAVER) ) {
-            if ( !entity.getUuidAsString().equals("") && !entity.isInvulnerable() ) {
-                entity.damage(ArchipelagoDamageSources.COMPRESSION, 10000000);
-                
+            if ( !entity.getUuidAsString().equals("9a5abccf-5013-423d-b137-453b13f07cab") && !entity.isInvulnerable() ) {
+                if (!entity.getUuidAsString().equals("8fdff6b5-f6a5-4fed-a006-0f883e1d6a4a")) {
+                    entity.damage(ArchipelagoDamageSources.COMPRESSION, 10000000);
+                } else {
+                    entity.setOnFireFor(2);
+                }
             }
         }
 

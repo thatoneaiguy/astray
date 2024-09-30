@@ -1,6 +1,6 @@
 package com.thatoneaiguy.archipelago.mixin;
 
-import com.thatoneaiguy.archipelago.init.ArchipelagoItems;
+/*import com.thatoneaiguy.archipelago.init.ArchipelagoItems;
 import com.thatoneaiguy.archipelago.render.IAstrayAnimatedPlayer;
 import dev.kosmx.playerAnim.api.layered.KeyframeAnimationPlayer;
 import dev.kosmx.playerAnim.core.data.KeyframeAnimation;
@@ -33,4 +33,4 @@ public class PlayerAnimationTriggerMixin {
             }
         }
     }
-}
+}*/

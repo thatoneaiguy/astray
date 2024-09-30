@@ -38,7 +38,7 @@ public class ArchipelagoBlocks {
             {"astral_vase", ASTRAL_VASE},
             {"decorative_vase", DECORATIVE_VASE},
 
-            {"crystal_log.json", CRYSTAL_LOG},
+            {"crystal_log", CRYSTAL_LOG},
             {"crystal_wood", CRYSTAL_WOOD},
             {"stripped_crystal_log", STRIPPED_CRYSTAL_LOG},
             {"stripped_crystal_wood", STRIPPED_CRYSTAL_WOOD},
@@ -46,7 +46,7 @@ public class ArchipelagoBlocks {
             {"crystal_planks", CRYSTAL_PLANKS},
             {"crystal_leaves", CRYSTAL_LEAVES},
 
-            {"crystal_sapling.json", CRYSTAL_SAPLING}
+            {"crystal_sapling", CRYSTAL_SAPLING}
 
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 

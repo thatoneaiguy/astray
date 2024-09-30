@@ -3,6 +3,7 @@ package com.thatoneaiguy.archipelago;
 import com.thatoneaiguy.archipelago.entity.GooberEntity;
 import com.thatoneaiguy.archipelago.init.*;
 import com.thatoneaiguy.archipelago.util.ArchipelagoStripping;
+import com.thatoneaiguy.archipelago.world.feature.ArchipelagoConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -23,9 +24,10 @@ public class Archipelago implements ModInitializer {
 		ArchipelagoItems.register();
 		ArchipelagoItemGroup.register();
 		ArchipelagoBlocks.registerAll();
+		ArchipelagoConfiguredFeatures.register();
+		ArchipelagoStripping.register();
 		ArchipelagoParticles.register();
 		ArchipelagoDamageSources.register();
-		ArchipelagoStripping.register();
 
 		GeckoLib.initialize();
 		//FabricDefaultAttributeRegistry.register(ArchipelagoEntities.GOOBER_ENTITY_TYPE, GooberEntity.setAttributes());

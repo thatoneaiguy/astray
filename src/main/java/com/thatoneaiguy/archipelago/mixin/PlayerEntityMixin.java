@@ -1,6 +1,7 @@
 package com.thatoneaiguy.archipelago.mixin;
 
 import com.thatoneaiguy.archipelago.item.Starweaver;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;

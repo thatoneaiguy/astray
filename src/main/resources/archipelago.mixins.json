@@ -3,9 +3,7 @@
 	"package": "com.thatoneaiguy.archipelago.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"PlayerEntityMixin",
-		"ClientPlayerEntityMixin",
-		"PlayerAnimationTriggerMixin"
+		"PlayerEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
