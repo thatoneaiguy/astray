@@ -22,7 +22,6 @@ public class Archipelago implements ModInitializer {
 		LOGGER.info("Look at the stars...");
 
 		ArchipelagoItems.register();
-		ArchipelagoItemGroup.register();
 		ArchipelagoBlocks.registerAll();
 		ArchipelagoConfiguredFeatures.register();
 		ArchipelagoStripping.register();

@@ -26,6 +26,9 @@ public class ArchipelagoClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ArchipelagoBlocks.CRYSTAL_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ArchipelagoBlocks.CRYSTAL_SAPLING, RenderLayer.getCutout());
 
+        BlockRenderLayerMap.INSTANCE.putBlock(ArchipelagoBlocks.PRIVACY_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ArchipelagoBlocks.PRIVACY_GLASS_PANEL, RenderLayer.getTranslucent());
+
         ClientPlayNetworking.registerGlobalReceiver(VaseBreakPacket.ID, ((client, handler, buf, responseSender) -> {
             Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
             client.execute(() -> {

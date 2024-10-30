@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "opaque=false": {
+      "model": "archipelago:block/privacy_glass"
+    },
+    "opaque=true": {
+      "model": "archipelago:block/privacy_glass_opaque"
+    }
+  }
+}

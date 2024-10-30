@@ -3,11 +3,14 @@ package com.thatoneaiguy.archipelago.init;
 import com.thatoneaiguy.archipelago.Archipelago;
 import com.thatoneaiguy.archipelago.block.AstralVase;
 import com.thatoneaiguy.archipelago.block.DecorativeVase;
+import com.thatoneaiguy.archipelago.block.PrivacyGlassBlock;
+import com.thatoneaiguy.archipelago.block.PrivacyGlassPanelBlock;
 import com.thatoneaiguy.archipelago.world.feature.tree.CrystalSaplingGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Instrument;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
@@ -24,6 +27,9 @@ public class ArchipelagoBlocks {
     public static final Block ASTRAL_VASE = new AstralVase(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK).requiresTool().strength(1.5F, 6.0F).sounds(BlockSoundGroup.NETHERITE));
     public static final Block DECORATIVE_VASE = new DecorativeVase(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK).requiresTool().strength(1.50F, 6.0F).sounds(BlockSoundGroup.NETHERITE));
 
+    public static final Block PRIVACY_GLASS = new PrivacyGlassBlock(FabricBlockSettings.copyOf(Blocks.BLACK_STAINED_GLASS).strength(-1.0F, 3600000.0F).nonOpaque());
+    public static final Block PRIVACY_GLASS_PANEL = new PrivacyGlassPanelBlock(FabricBlockSettings.copyOf(Blocks.BLACK_STAINED_GLASS).sounds(BlockSoundGroup.GLASS).nonOpaque());
+
     public static final Block CRYSTAL_LOG = new PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG));
     public static final Block CRYSTAL_WOOD = new PillarBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD));
     public static final Block STRIPPED_CRYSTAL_LOG = new PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_LOG));
@@ -35,18 +41,21 @@ public class ArchipelagoBlocks {
     public static final Block CRYSTAL_SAPLING = new SaplingBlock(new CrystalSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING));
 
     static Map<String, Object> BLOCKS = Stream.of(new Object[][] {
-            {"astral_vase", ASTRAL_VASE},
+            {"astral_vase", ASTRAL_VASE, ItemGroup.DECORATIONS},
             {"decorative_vase", DECORATIVE_VASE},
 
-            {"crystal_log", CRYSTAL_LOG},
-            {"crystal_wood", CRYSTAL_WOOD},
-            {"stripped_crystal_log", STRIPPED_CRYSTAL_LOG},
-            {"stripped_crystal_wood", STRIPPED_CRYSTAL_WOOD},
+            {"privacy_glass", PRIVACY_GLASS, ItemGroup.BUILDING_BLOCKS},
+            {"privacy_glass_panel", PRIVACY_GLASS_PANEL, ItemGroup.REDSTONE},
 
-            {"crystal_planks", CRYSTAL_PLANKS},
-            {"crystal_leaves", CRYSTAL_LEAVES},
+            {"crystal_log", CRYSTAL_LOG, ItemGroup.BUILDING_BLOCKS},
+            {"crystal_wood", CRYSTAL_WOOD, ItemGroup.BUILDING_BLOCKS},
+            {"stripped_crystal_log", STRIPPED_CRYSTAL_LOG, ItemGroup.BUILDING_BLOCKS},
+            {"stripped_crystal_wood", STRIPPED_CRYSTAL_WOOD, ItemGroup.BUILDING_BLOCKS},
 
-            {"crystal_sapling", CRYSTAL_SAPLING}
+            {"crystal_planks", CRYSTAL_PLANKS, ItemGroup.BUILDING_BLOCKS},
+            {"crystal_leaves", CRYSTAL_LEAVES, ItemGroup.BUILDING_BLOCKS},
+
+            {"crystal_sapling", CRYSTAL_SAPLING, ItemGroup.DECORATIONS}
 
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 
