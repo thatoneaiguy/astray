@@ -12,6 +12,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class PrivacyGlassPanelBlock extends GlassPanelBlock implements PrivacyBlock {
@@ -37,8 +38,17 @@ public class PrivacyGlassPanelBlock extends GlassPanelBlock implements PrivacyBl
 
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(new Property[]{OPAQUE, INTERACTION_COOLDOWN});
+		builder.add(new Property[]{OPAQUE, INTERACTION_COOLDOWN, CLOSED_OPEN, OPEN_CLOSED});
 		super.appendProperties(builder);
+	}
+
+	@Override
+	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
+		return false;
+	}
+
+	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
+		return world.getMaxLightLevel();
 	}
 }
 

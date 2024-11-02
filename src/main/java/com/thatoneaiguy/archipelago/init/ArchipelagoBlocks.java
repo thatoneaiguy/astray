@@ -27,7 +27,7 @@ public class ArchipelagoBlocks {
     public static final Block ASTRAL_VASE = new AstralVase(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK).requiresTool().strength(1.5F, 6.0F).sounds(BlockSoundGroup.NETHERITE));
     public static final Block DECORATIVE_VASE = new DecorativeVase(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK).requiresTool().strength(1.50F, 6.0F).sounds(BlockSoundGroup.NETHERITE));
 
-    public static final Block PRIVACY_GLASS = new PrivacyGlassBlock(FabricBlockSettings.copyOf(Blocks.BLACK_STAINED_GLASS).strength(-1.0F, 3600000.0F).nonOpaque());
+    public static final Block PRIVACY_GLASS = new PrivacyGlassBlock(FabricBlockSettings.copyOf(Blocks.BLACK_STAINED_GLASS).nonOpaque());
     public static final Block PRIVACY_GLASS_PANEL = new PrivacyGlassPanelBlock(FabricBlockSettings.copyOf(Blocks.BLACK_STAINED_GLASS).sounds(BlockSoundGroup.GLASS).nonOpaque());
 
     public static final Block CRYSTAL_LOG = new PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG));

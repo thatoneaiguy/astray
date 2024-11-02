@@ -1,5 +1,11 @@
 {
   "variants": {
+    "closed_open=true, opaque=false": {
+      "model": "archipelago:block/closed_open"
+    },
+    "open_closed=true, opaque=false": {
+      "model": "archipelago:block/open_closed"
+    },
     "opaque=false": {
       "model": "archipelago:block/privacy_glass"
     },

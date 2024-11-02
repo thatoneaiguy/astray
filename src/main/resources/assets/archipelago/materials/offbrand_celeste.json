@@ -1,0 +1,8 @@
+{
+  "layers": [
+    {
+      "vertexSource": "archipelago:shaders/material/offbrand_celeste.vert",
+      "fragmentSource": "archipelago:shaders/material/offbrand_celeste.frag"
+    }
+  ]
+}

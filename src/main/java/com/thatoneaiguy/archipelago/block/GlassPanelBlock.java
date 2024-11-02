@@ -42,12 +42,17 @@ public class GlassPanelBlock extends FacingBlock implements Waterloggable, Priva
 
 	public GlassPanelBlock(AbstractBlock.Settings settings) {
 		super(settings);
-		this.setDefaultState((BlockState)((BlockState)super.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.SOUTH).with(OPAQUE, true));
+		this.setDefaultState((BlockState)((BlockState)super.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.SOUTH).with(OPAQUE, false));
 	}
 
 	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		this.toggle(state, world, pos);
+		boolean openClosed = (Boolean)state.get(OPEN_CLOSED);
+		boolean closedOpen = (Boolean)state.get(CLOSED_OPEN);
+
+		if ( !openClosed && !closedOpen ) {
+			this.toggle(state, world, pos);
+		}
 	}
 
 	@Override
@@ -198,6 +203,15 @@ public class GlassPanelBlock extends FacingBlock implements Waterloggable, Priva
 		} else {
 			return super.onUse(state, world, pos, player, hand, hit);
 		}
+	}
+
+	@Override
+	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
+		return false;
+	}
+
+	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
+		return world.getMaxLightLevel();
 	}
 
 	static {
