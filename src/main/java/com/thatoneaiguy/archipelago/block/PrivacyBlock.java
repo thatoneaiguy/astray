@@ -26,7 +26,6 @@ public interface PrivacyBlock {
 
 	int COOLDOWN = 5;
 
-
 	default void toggle(BlockState state, World world, BlockPos pos) {
 		boolean opaque = !(Boolean)state.get(OPAQUE);
 
@@ -35,9 +34,10 @@ public interface PrivacyBlock {
 		} else {
 			world.playSound((PlayerEntity)null, pos, Archipelago.PRIVACY_GLASS_TOGGLE_EVENT, SoundCategory.BLOCKS, 0.5F, opaque ? 1.0F : 1.2F);
 			if ( opaque /* IF IT IS TRANSLUCENT */ ) {
-				world.setBlockState(pos, (BlockState)((BlockState)state.with(OPEN_CLOSED, !opaque)).with(INTERACTION_COOLDOWN, true).with(OPAQUE, false));
+				world.setBlockState(pos, (BlockState)((BlockState)state.with(OPEN_CLOSED, true)).with(INTERACTION_COOLDOWN, true).with(OPAQUE, false).with(CLOSED_OPEN, false));
+				world.createAndScheduleBlockTick(pos, state.getBlock(), 16);
 			} else if ( !opaque /* IF IT IS OPAQUE */) {
-				world.setBlockState(pos, (BlockState)((BlockState)state.with(CLOSED_OPEN, opaque)).with(INTERACTION_COOLDOWN, true).with(OPAQUE, false));
+				world.setBlockState(pos, (BlockState)((BlockState)state.with(CLOSED_OPEN, true)).with(INTERACTION_COOLDOWN, true).with(OPAQUE, false).with(OPEN_CLOSED, false));
 			}
 			world.setBlockState(pos, (BlockState)((BlockState)state.with(OPAQUE, opaque)).with(INTERACTION_COOLDOWN, true).with(OPEN_CLOSED, false).with(CLOSED_OPEN, false));
 			world.createAndScheduleBlockTick(pos, state.getBlock(), COOLDOWN);

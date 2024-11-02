@@ -1,16 +1,52 @@
 {
   "variants": {
-    "closed_open=true, opaque=false": {
-      "model": "archipelago:block/closed_open"
-    },
-    "open_closed=true, opaque=false": {
+    "closed_open=false,interaction_cooldown=true,opaque=true,open_closed=true": {
       "model": "archipelago:block/open_closed"
     },
-    "opaque=false": {
+    "closed_open=false,interaction_cooldown=false,opaque=true,open_closed=true": {
+      "model": "archipelago:block/open_closed"
+    },
+    "closed_open=false,interaction_cooldown=false,opaque=false,open_closed=true": {
+      "model": "archipelago:block/open_closed"
+    },
+    "closed_open=true,interaction_cooldown=true,opaque=false,open_closed=false": {
+      "model": "archipelago:block/closed_open"
+    },
+    "closed_open=true,interaction_cooldown=false,opaque=false,open_closed=false": {
+      "model": "archipelago:block/closed_open"
+    },
+    "closed_open=false,interaction_cooldown=true,opaque=false,open_closed=false": {
       "model": "archipelago:block/privacy_glass"
     },
-    "opaque=true": {
+    "closed_open=true,interaction_cooldown=true,opaque=true,open_closed=true": {
       "model": "archipelago:block/privacy_glass_opaque"
+    },
+    "closed_open=true,interaction_cooldown=false,opaque=true,open_closed=true": {
+      "model": "archipelago:block/privacy_glass_opaque"
+    },
+    "closed_open=false,interaction_cooldown=false,opaque=false,open_closed=false": {
+      "model": "archipelago:block/privacy_glass"
+    },
+    "closed_open=false,interaction_cooldown=true,opaque=true,open_closed=false": {
+      "model": "archipelago:block/privacy_glass_opaque"
+    },
+    "closed_open=false,interaction_cooldown=false,opaque=true,open_closed=false": {
+      "model": "archipelago:block/privacy_glass_opaque"
+    },
+    "closed_open=true,interaction_cooldown=true,opaque=true,open_closed=false": {
+      "model": "archipelago:block/closed_open"
+    },
+    "closed_open=true,interaction_cooldown=false,opaque=false,open_closed=true": {
+      "model": "archipelago:block/privacy_glass"
+    },
+    "closed_open=true,interaction_cooldown=true,opaque=false,open_closed=true": {
+      "model": "archipelago:block/privacy_glass"
+    },
+    "closed_open=true,interaction_cooldown=false,opaque=true,open_closed=false": {
+      "model": "archipelago:block/closed_open"
+    },
+    "closed_open=false,interaction_cooldown=true,opaque=false,open_closed=true": {
+      "model": "archipelago:block/open_closed"
     }
   }
 }

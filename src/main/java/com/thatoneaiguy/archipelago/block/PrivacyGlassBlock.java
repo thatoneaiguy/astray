@@ -20,6 +20,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import java.awt.*;
+import java.security.PrivilegedAction;
 
 public class PrivacyGlassBlock extends GlassBlock implements PrivacyBlock {
 
@@ -46,6 +47,7 @@ public class PrivacyGlassBlock extends GlassBlock implements PrivacyBlock {
 			this.toggle(state, world, pos);
 		} else {
 			super.scheduledTick(state, world, pos, random);
+
 		}
 	}
 
