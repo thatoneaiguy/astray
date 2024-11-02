@@ -44,9 +44,10 @@ public class PrivacyGlassBlock extends GlassBlock implements PrivacyBlock {
 
 		if ( !openClosed && !closedOpen ) {
 			this.toggle(state, world, pos);
+		} else {
+			super.scheduledTick(state, world, pos, random);
 		}
 	}
-
 
 
 	@Override

@@ -1,8 +1,8 @@
 {
-  "ancient_vase_break":{
-    "subtitle": "sounds.archipelago.ancient_vase_break",
+  "privacy_glass_toggle":{
+    "subtitle": "sounds.archipelago.privacy_glass_toggle",
     "sounds": [
-      "archipelago:ancient_vase_break"
+      "archipelago:privacy_glass_toggle"
     ]
   }
 }

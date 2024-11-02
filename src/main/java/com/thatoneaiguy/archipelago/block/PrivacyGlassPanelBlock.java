@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class PrivacyGlassPanelBlock extends GlassPanelBlock implements PrivacyBlock {
 	public PrivacyGlassPanelBlock(AbstractBlock.Settings settings) {
 		super(settings);
-		this.setDefaultState((BlockState)((BlockState)super.getDefaultState().with(OPAQUE, false)).with(INTERACTION_COOLDOWN, false));
+		this.setDefaultState((BlockState)((BlockState)super.getDefaultState().with(OPAQUE, false)).with(INTERACTION_COOLDOWN, false).with(CLOSED_OPEN, false).with(OPEN_CLOSED, false));
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.thatoneaiguy.archipelago.block;
 
+import com.thatoneaiguy.archipelago.Archipelago;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.SpyglassItem;
@@ -23,8 +24,7 @@ public interface PrivacyBlock {
 	BooleanProperty INTERACTION_COOLDOWN = BooleanProperty.of("interaction_cooldown");
 	Direction[][] DIAGONALS = new Direction[][]{{Direction.NORTH, Direction.EAST}, {Direction.SOUTH, Direction.EAST}, {Direction.SOUTH, Direction.WEST}, {Direction.NORTH, Direction.WEST}, {Direction.UP, Direction.NORTH}, {Direction.UP, Direction.EAST}, {Direction.UP, Direction.SOUTH}, {Direction.UP, Direction.WEST}, {Direction.DOWN, Direction.NORTH}, {Direction.DOWN, Direction.EAST}, {Direction.DOWN, Direction.SOUTH}, {Direction.DOWN, Direction.WEST}};
 
-	int DELAY = 1;
-	int COOLDOWN = 20;
+	int COOLDOWN = 5;
 
 
 	default void toggle(BlockState state, World world, BlockPos pos) {
@@ -33,16 +33,14 @@ public interface PrivacyBlock {
 		if ((Boolean)state.get(INTERACTION_COOLDOWN)) {
 			world.setBlockState(pos, (BlockState)state.with(INTERACTION_COOLDOWN, false));
 		} else {
-			world.playSound((PlayerEntity)null, pos, SoundEvents.UI_BUTTON_CLICK, SoundCategory.BLOCKS, 0.1F, opaque ? 1.0F : 1.2F);
+			world.playSound((PlayerEntity)null, pos, Archipelago.PRIVACY_GLASS_TOGGLE_EVENT, SoundCategory.BLOCKS, 0.5F, opaque ? 1.0F : 1.2F);
 			if ( opaque /* IF IT IS TRANSLUCENT */ ) {
-				world.setBlockState(pos, (BlockState)((BlockState)state.with(OPEN_CLOSED, true)).with(INTERACTION_COOLDOWN, true).with(OPAQUE, false));
-				world.createAndScheduleBlockTick(pos, state.getBlock(), 16);
+				world.setBlockState(pos, (BlockState)((BlockState)state.with(OPEN_CLOSED, !opaque)).with(INTERACTION_COOLDOWN, true).with(OPAQUE, false));
 			} else if ( !opaque /* IF IT IS OPAQUE */) {
-				world.setBlockState(pos, (BlockState)((BlockState)state.with(CLOSED_OPEN, true)).with(INTERACTION_COOLDOWN, true).with(OPAQUE, false));
-				world.createAndScheduleBlockTick(pos, state.getBlock(), 16);
+				world.setBlockState(pos, (BlockState)((BlockState)state.with(CLOSED_OPEN, opaque)).with(INTERACTION_COOLDOWN, true).with(OPAQUE, false));
 			}
 			world.setBlockState(pos, (BlockState)((BlockState)state.with(OPAQUE, opaque)).with(INTERACTION_COOLDOWN, true).with(OPEN_CLOSED, false).with(CLOSED_OPEN, false));
-			world.createAndScheduleBlockTick(pos, state.getBlock(), 20);
+			world.createAndScheduleBlockTick(pos, state.getBlock(), COOLDOWN);
 			Set<Direction> changedDirections = EnumSet.noneOf(Direction.class);
 			Direction[] var6 = Direction.values();
 			int var7 = var6.length;

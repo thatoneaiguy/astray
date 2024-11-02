@@ -42,7 +42,7 @@ public class GlassPanelBlock extends FacingBlock implements Waterloggable, Priva
 
 	public GlassPanelBlock(AbstractBlock.Settings settings) {
 		super(settings);
-		this.setDefaultState((BlockState)((BlockState)super.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.SOUTH).with(OPAQUE, false));
+		this.setDefaultState((BlockState)((BlockState)super.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.SOUTH).with(OPAQUE, false).with(CLOSED_OPEN, false).with(OPEN_CLOSED, false));
 	}
 
 	@Override
