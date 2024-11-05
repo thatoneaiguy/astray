@@ -2,9 +2,11 @@ package com.thatoneaiguy.archipelago;
 
 import com.thatoneaiguy.archipelago.init.*;
 import com.thatoneaiguy.archipelago.util.ArchipelagoStripping;
+import com.thatoneaiguy.archipelago.util.DelayedActionHandler;
 import com.thatoneaiguy.archipelago.world.feature.ArchipelagoConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -13,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import software.bernie.geckolib3.GeckoLib;
 
 public class Archipelago implements ModInitializer {
-
 	public static final String MODID = "archipelago";
 
 	public static final Logger LOGGER = LoggerFactory.getLogger("Astray Archipelago");
@@ -32,6 +33,7 @@ public class Archipelago implements ModInitializer {
 		ArchipelagoStripping.register();
 		ArchipelagoParticles.register();
 		ArchipelagoDamageSources.register();
+		DelayedActionHandler.register();
 
 		GeckoLib.initialize();
 		//FabricDefaultAttributeRegistry.register(ArchipelagoEntities.GOOBER_ENTITY_TYPE, GooberEntity.setAttributes());

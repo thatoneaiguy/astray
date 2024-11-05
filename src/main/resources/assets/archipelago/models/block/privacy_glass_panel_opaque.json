@@ -2,6 +2,6 @@
   "parent": "archipelago:block/template_glass_panel",
   "textures": {
     "edge": "archipelago:block/privacy_glass_panel_trim",
-    "pane": "archipelago:block/privacy_glass_panel_opaque"
+    "pane": "archipelago:block/privacy_glass_opaque"
   }
 }

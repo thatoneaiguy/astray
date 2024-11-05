@@ -19,6 +19,7 @@ repositories {
 	maven {url "https://maven.shedaniel.me/"}
 	maven {url "https://maven.gegy.dev"}
 	maven {url "https://maven.terraformersmc.com/releases/"}
+	maven { url = 'https://maven.ladysnake.org/releases' } // trinkets
 }
 
 dependencies {
@@ -28,8 +29,9 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.0'
-	modCompileOnly "io.vram:canvas-fabric:19.2.+"
-	modRuntimeOnly "io.vram:canvas-fabric:19.2.+"
+	modCompileOnly "io.vram:canvas-fabric:19.2.2614"
+	modRuntimeOnly "io.vram:canvas-fabric:19.2.2614"
+	modImplementation "dev.emi:trinkets:${trinkets_version}"
 
 	//include modImplementation("dev.kosmx.player-anim:player-animation-lib-fabric:${project.player_anim}")
 }

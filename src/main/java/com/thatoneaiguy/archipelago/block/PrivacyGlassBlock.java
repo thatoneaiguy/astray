@@ -1,5 +1,6 @@
 package com.thatoneaiguy.archipelago.block;
 
+import grondag.canvas.shader.Shader;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -23,7 +24,6 @@ import java.awt.*;
 import java.security.PrivilegedAction;
 
 public class PrivacyGlassBlock extends GlassBlock implements PrivacyBlock {
-
 	public PrivacyGlassBlock(AbstractBlock.Settings settings) {
 		super(settings);
 		this.setDefaultState((BlockState) ((BlockState) super.getDefaultState().with(INTERACTION_COOLDOWN, false).with(OPAQUE, true).with(OPEN_CLOSED, false).with(CLOSED_OPEN, false)));
@@ -59,16 +59,11 @@ public class PrivacyGlassBlock extends GlassBlock implements PrivacyBlock {
 
 	@Override
 	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
-		return false;
+		return true;
 	}
 
+	@Override
 	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
-		return world.getMaxLightLevel();
+		return 1;
 	}
-
-	/*@Override
-	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
-		return world.getMaxLightLevel();
-	}*/
-
 }
