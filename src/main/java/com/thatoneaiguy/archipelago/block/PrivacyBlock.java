@@ -5,13 +5,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.SpyglassItem;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.arch.Processor;
 
 import java.util.EnumSet;
 import java.util.Set;
@@ -26,7 +24,6 @@ public interface PrivacyBlock {
 	Direction[][] DIAGONALS = new Direction[][]{{Direction.NORTH, Direction.EAST}, {Direction.SOUTH, Direction.EAST}, {Direction.SOUTH, Direction.WEST}, {Direction.NORTH, Direction.WEST}, {Direction.UP, Direction.NORTH}, {Direction.UP, Direction.EAST}, {Direction.UP, Direction.SOUTH}, {Direction.UP, Direction.WEST}, {Direction.DOWN, Direction.NORTH}, {Direction.DOWN, Direction.EAST}, {Direction.DOWN, Direction.SOUTH}, {Direction.DOWN, Direction.WEST}};
 
 	int COOLDOWN = 5;
-
 
 
 	default void toggle(BlockState state, World world, BlockPos pos) {

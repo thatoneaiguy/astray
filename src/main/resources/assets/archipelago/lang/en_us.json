@@ -1,6 +1,8 @@
 {
   "block.archipelago.astral_vase": "Astral Vase",
   "block.archipelago.decorative_vase": "Astral Vase",
+  "block.archipelago.privacy_glass": "Privacy Glass",
+  "block.archipelago.privacy_glass_panel": "Privacy Glass Panel",
 
   "block.archipelago.crystal_log": "Crystal Log",
   "block.archipelago.crystal_wood": "Crystal Wood",
@@ -11,6 +13,10 @@
   "block.archipelago.crystal_sapling": "Crystal Sapling",
 
   "item.archipelago.starweaver": "✦ Starweaver ✦",
+  "item.archipelago.enigma_shard": "Enigma Shard",
+
+  "item.archipelago.grapple_hook": "Grappling Hook",
+  "item.archipelago.glider": "Glider",
 
   "trinkets.slot.head.trim": "Trims",
 

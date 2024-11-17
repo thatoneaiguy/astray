@@ -1,0 +1,11 @@
+{
+  "type": "archipelago:archipelago",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "archipelago:archipelago"
+    },
+    "settings": "archipelago:archipelago"
+  }
+}

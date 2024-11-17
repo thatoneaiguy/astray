@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:glass"
+    },
+    {
+      "item": "archipelago:enigma_shard"
+    }
+  ],
+  "result": {
+    "item": "archipelago:privacy_glass"
+  }
+}

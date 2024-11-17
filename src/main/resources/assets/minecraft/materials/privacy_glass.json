@@ -1,0 +1,8 @@
+{
+  "layers": [
+    {
+      "vertexSource": "minecraft:shaders/privacy_glass.vert",
+      "fragmentSource": "minecraft:shaders/privacy_glass.frag"
+    }
+  ]
+}

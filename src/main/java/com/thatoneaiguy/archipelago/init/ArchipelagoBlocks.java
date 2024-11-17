@@ -41,21 +41,21 @@ public class ArchipelagoBlocks {
     public static final Block CRYSTAL_SAPLING = new SaplingBlock(new CrystalSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING));
 
     static Map<String, Object> BLOCKS = Stream.of(new Object[][] {
-            {"astral_vase", ASTRAL_VASE, ItemGroup.DECORATIONS},
+            {"astral_vase", ASTRAL_VASE},
             {"decorative_vase", DECORATIVE_VASE},
 
-            {"privacy_glass", PRIVACY_GLASS, ItemGroup.BUILDING_BLOCKS},
-            {"privacy_glass_panel", PRIVACY_GLASS_PANEL, ItemGroup.REDSTONE},
+            {"privacy_glass", PRIVACY_GLASS},
+            {"privacy_glass_panel", PRIVACY_GLASS_PANEL},
 
-            {"crystal_log", CRYSTAL_LOG, ItemGroup.BUILDING_BLOCKS},
-            {"crystal_wood", CRYSTAL_WOOD, ItemGroup.BUILDING_BLOCKS},
-            {"stripped_crystal_log", STRIPPED_CRYSTAL_LOG, ItemGroup.BUILDING_BLOCKS},
-            {"stripped_crystal_wood", STRIPPED_CRYSTAL_WOOD, ItemGroup.BUILDING_BLOCKS},
+            {"crystal_log", CRYSTAL_LOG},
+            {"crystal_wood", CRYSTAL_WOOD},
+            {"stripped_crystal_log", STRIPPED_CRYSTAL_LOG},
+            {"stripped_crystal_wood", STRIPPED_CRYSTAL_WOOD},
 
-            {"crystal_planks", CRYSTAL_PLANKS, ItemGroup.BUILDING_BLOCKS},
-            {"crystal_leaves", CRYSTAL_LEAVES, ItemGroup.BUILDING_BLOCKS},
+            {"crystal_planks", CRYSTAL_PLANKS},
+            {"crystal_leaves", CRYSTAL_LEAVES},
 
-            {"crystal_sapling", CRYSTAL_SAPLING, ItemGroup.DECORATIONS}
+            {"crystal_sapling", CRYSTAL_SAPLING}
 
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 

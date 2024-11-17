@@ -1,9 +1,4 @@
-package com.thatoneaiguy.archipelago.render;
-
-import com.thatoneaiguy.archipelago.Archipelago;
-import com.thatoneaiguy.archipelago.entity.GooberEntity;
-import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+package com.thatoneaiguy.archipelago.render.entity;
 
 /*
 public class GooberModel extends AnimatedGeoModel<GooberEntity> {

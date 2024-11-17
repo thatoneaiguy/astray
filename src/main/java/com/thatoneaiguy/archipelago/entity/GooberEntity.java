@@ -20,7 +20,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class GooberEntity extends HostileEntity implements IAnimatable {
+public class GooberEntity extends ArchipelagoEntity implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
 
     public GooberEntity(EntityType<? extends HostileEntity> entityType, World world) {

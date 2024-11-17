@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PI",
+    "IP"
+  ],
+  "key": {
+    "P": {
+      "item": "archipelago:privacy_glass"
+    },
+    "I": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "archipelago:privacy_glass_panel",
+    "count": 3
+  }
+}
