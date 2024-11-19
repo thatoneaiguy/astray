@@ -1,4 +1,4 @@
-package com.thatoneaiguy.archipelago.util;
+package com.thatoneaiguy.archipelago.util.runic;
 
 import com.thatoneaiguy.archipelago.entity.runic.TotemEntity;
 import net.minecraft.entity.Entity;

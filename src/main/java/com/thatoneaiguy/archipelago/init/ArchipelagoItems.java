@@ -28,6 +28,9 @@ public class ArchipelagoItems {
         // MOVEMENT
     public static final Item GLIDER = registerItem("glider", new GliderItem(new FabricItemSettings().rarity(Rarity.UNCOMMON).fireproof()));
     public static final Item GRAPPLE_HOOK = registerItem("grapple_hook", new GrappleHookItem(new FabricItemSettings().rarity(Rarity.UNCOMMON).fireproof()));
+        // RUNIC
+    public static final Item RELIK = registerItem("relik", new Item(new FabricItemSettings().rarity(Rarity.UNCOMMON).fireproof()));
+
 
     public static final Item registerItem(String name, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(Archipelago.MODID, name), item);

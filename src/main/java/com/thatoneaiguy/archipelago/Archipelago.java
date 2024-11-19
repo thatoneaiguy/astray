@@ -5,6 +5,7 @@ import com.thatoneaiguy.archipelago.entity.runic.acolyte.AcolyteBloodEntity;
 import com.thatoneaiguy.archipelago.init.*;
 import com.thatoneaiguy.archipelago.util.ArchipelagoStripping;
 import com.thatoneaiguy.archipelago.util.DelayedActionHandler;
+import com.thatoneaiguy.archipelago.util.runic.RelikServerHandler;
 import com.thatoneaiguy.archipelago.world.feature.ArchipelagoConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 
@@ -37,6 +38,7 @@ public class Archipelago implements ModInitializer {
 		ArchipelagoEntities.register();
 		DelayedActionHandler.register();
 
+		RelikServerHandler.register();
 		registerEntityAttributes();
 	}
 
@@ -44,5 +46,9 @@ public class Archipelago implements ModInitializer {
 		//FabricDefaultAttributeRegistry.register(ArchipelagoEntities.GOOBER_ENTITY_TYPE, GooberEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ArchipelagoEntities.TOTEM_ENTITY_TYPE, TotemEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ArchipelagoEntities.BLOOD_ENTITY_TYPE, AcolyteBloodEntity.setAttributes());
+	}
+
+	public static Identifier id(String string) {
+		return new Identifier(MODID, string);
 	}
 }

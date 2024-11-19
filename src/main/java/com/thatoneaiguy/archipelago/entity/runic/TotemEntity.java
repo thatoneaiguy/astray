@@ -45,9 +45,9 @@ public class TotemEntity extends HostileEntity {
 
         for (int i = 0; i < 4; i++) {
             Vec3d vec3d = new Vec3d(
-                    this.getX() + (MathHelper.sin((this.age) * 0.75f + i * 45) * this.getWidth() * 1.2),
+                    this.getX() + (MathHelper.sin((-this.age) * 0.75f + i * 45) * this.getWidth() * 1.2),
                     this.getBodyY(0.5f),
-                    this.getZ() + (MathHelper.cos((this.age) * 0.75f + i * 45) * this.getWidth() * 1.2));
+                    this.getZ() + (MathHelper.cos((-this.age) * 0.75f + i * 45) * this.getWidth() * 1.2));
 
             world.addParticle(ParticleTypes.CRIT, vec3d.getX(), vec3d.getY(), vec3d.getZ(), 0.0, 0.0, 0.0);
         }

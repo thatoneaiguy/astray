@@ -2,7 +2,7 @@ package com.thatoneaiguy.archipelago.item.debug;
 
 import com.thatoneaiguy.archipelago.entity.runic.TotemEntity;
 import com.thatoneaiguy.archipelago.init.ArchipelagoEntities;
-import com.thatoneaiguy.archipelago.util.TotemManager;
+import com.thatoneaiguy.archipelago.util.runic.TotemManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

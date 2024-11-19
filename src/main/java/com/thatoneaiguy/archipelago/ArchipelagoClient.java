@@ -9,6 +9,7 @@ import com.thatoneaiguy.archipelago.particle.VaseBreakParticle;
 import com.thatoneaiguy.archipelago.render.entity.abilities.runic.TotemEntityModel;
 import com.thatoneaiguy.archipelago.render.entity.abilities.runic.TotemEntityRenderer;
 import com.thatoneaiguy.archipelago.render.entity.abilities.runic.acolyte.AcolyteBloodEntityRenderer;
+import com.thatoneaiguy.archipelago.util.runic.RelikInputHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -33,6 +34,8 @@ public class ArchipelagoClient implements ClientModInitializer {
         registerRenderLayerMaps();
         registerClientNetworking();
         registerEntityRenderers();
+
+        new RelikInputHandler();
     }
 
     public void registerEntityRenderers() {
