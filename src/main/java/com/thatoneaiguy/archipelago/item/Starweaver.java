@@ -4,8 +4,10 @@ package com.thatoneaiguy.archipelago.item;
 import com.thatoneaiguy.archipelago.init.ArchipelagoDamageSources;
 import com.thatoneaiguy.archipelago.init.ArchipelagoItems;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterials;
@@ -22,11 +24,6 @@ public class Starweaver extends SwordItem {
     }
 
     public static final Color STAR = new Color(0xED8EF9);
-
-    @Override
-    public boolean hasGlint(ItemStack stack) {
-        return true;
-    }
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {

@@ -1,5 +1,6 @@
 package com.thatoneaiguy.archipelago.entity.runic.acolyte;
 
+import com.thatoneaiguy.archipelago.entity.ArchipelagoEntity;
 import com.thatoneaiguy.archipelago.init.ArchipelagoParticles;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
@@ -46,7 +47,7 @@ public class AcolyteBloodEntity extends VexEntity {
         this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 3.0F, 1.0F));
         this.goalSelector.add(10, new LookAtEntityGoal(this, MobEntity.class, 8.0F));
         this.targetSelector.add(1, (new RevengeGoal(this, new Class[]{RaiderEntity.class})).setGroupRevenge(new Class[0]));
-        this.targetSelector.add(3, new ActiveTargetGoal(this, MobEntity.class, true));
+        this.targetSelector.add(3, new ActiveTargetGoal(this, ArchipelagoEntity.class, true));
     }
 
     /*@Override

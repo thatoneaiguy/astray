@@ -1,19 +1,16 @@
-package com.thatoneaiguy.archipelago.mixin;
+package com.thatoneaiguy.archipelago.mixin.vfx;
 
+import com.thatoneaiguy.archipelago.Archipelago;
+import com.thatoneaiguy.archipelago.util.LocationHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
-
-import com.mojang.blaze3d.systems.RenderSystem;
 
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.At;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.WorldRenderer;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.client.world.ClientWorld.Properties;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.HeightLimitView;
 
 @Mixin(value = WorldRenderer.class, priority = 1002)
@@ -74,10 +71,9 @@ public class WorldRendererMixin {
             )
     )
     private double modifyVoidThreshold(Properties self, HeightLimitView world) {
-        if ( client.player.world.getDimensionKey().getRegistry().getNamespace().equals("archipelago") ) {
+        if ( LocationHelper.isPlayerInArchipelago(client.player) ) {
             return -100;
         }
-        return -100;
+        return -64;
     }
-
 }

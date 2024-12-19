@@ -1,16 +1,11 @@
-package com.thatoneaiguy.archipelago.util.runic;
+package com.thatoneaiguy.archipelago.util.runic.magic;
 
 import com.thatoneaiguy.archipelago.init.ArchipelagoItems;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.sound.SoundInstance;
-import net.minecraft.client.sound.SoundManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.message.MessageType;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -30,6 +25,10 @@ public class RelikInputHandler {
     private boolean rightClickPressed = false;
 
     boolean cast = false;
+
+    public LinkedList<Character> getInputSequence() {
+        return inputSequence;  // Getter for input sequence
+    }
 
     public RelikInputHandler() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> handleMouseInput(client));

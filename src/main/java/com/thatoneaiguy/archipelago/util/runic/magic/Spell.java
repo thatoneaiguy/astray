@@ -1,4 +1,4 @@
-package com.thatoneaiguy.archipelago.util.runic;
+package com.thatoneaiguy.archipelago.util.runic.magic;
 
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;

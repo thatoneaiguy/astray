@@ -1,7 +1,8 @@
-package com.thatoneaiguy.archipelago.util.runic;
+package com.thatoneaiguy.archipelago.util.runic.magic;
 
 import com.thatoneaiguy.archipelago.entity.runic.TotemEntity;
 import com.thatoneaiguy.archipelago.init.ArchipelagoEntities;
+import com.thatoneaiguy.archipelago.util.runic.TotemManager;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;

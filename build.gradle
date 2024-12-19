@@ -33,6 +33,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19:3.1.0'
+	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.4.1")))
 	//modCompileOnly "io.vram:canvas-fabric:19.2.2614"
 	//modRuntimeOnly "io.vram:canvas-fabric:19.2.2614"
 	//modImplementation "dev.emi:trinkets:${trinkets_version}"
