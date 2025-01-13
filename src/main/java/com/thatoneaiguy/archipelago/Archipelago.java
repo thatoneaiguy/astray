@@ -9,6 +9,7 @@ import com.thatoneaiguy.archipelago.util.runic.magic.RelikServerHandler;
 import com.thatoneaiguy.archipelago.world.feature.ArchipelagoConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.block.InventoryProvider;
@@ -16,6 +17,9 @@ import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.CloudRenderMode;
 import net.minecraft.client.particle.CloudParticle;
+import net.minecraft.client.render.entity.ArmorStandEntityRenderer;
+import net.minecraft.client.render.entity.model.ArmorStandArmorEntityModel;
+import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

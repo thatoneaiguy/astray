@@ -26,7 +26,7 @@ import net.minecraft.util.math.Vec3d;
 public class ArchipelagoClient implements ClientModInitializer {
     public static final EntityModelLayer MODEL_TEST_LAYER = new EntityModelLayer(new Identifier("archipelago", "test"), "main");
 
-    public RenderLayer GLINT;
+    private static int flashTimer = 0;
 
     @Override
     public void onInitializeClient() {
