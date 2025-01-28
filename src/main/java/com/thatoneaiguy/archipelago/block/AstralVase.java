@@ -37,7 +37,7 @@ public class AstralVase extends HorizontalFacingBlock {
 
     public AstralVase(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((((BlockState) this.stateManager.getDefaultState()).with(GENERATED, false)));
+        this.setDefaultState((this.stateManager.getDefaultState().with(GENERATED, false)));
     }
 
     //added by winter to test if this would fix the model's renderer being bugged
@@ -59,7 +59,7 @@ public class AstralVase extends HorizontalFacingBlock {
     @Nullable
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
 

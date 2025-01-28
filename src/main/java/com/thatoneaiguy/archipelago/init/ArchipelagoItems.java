@@ -8,9 +8,10 @@ import com.thatoneaiguy.archipelago.item.Starweaver;
 import com.thatoneaiguy.archipelago.item.debug.RunicTestItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
-import net.minecraft.util.registry.Registry;
 
 public class ArchipelagoItems {
 
@@ -33,7 +34,7 @@ public class ArchipelagoItems {
 
 
     public static final Item registerItem(String name, Item item) {
-        return Registry.register(Registry.ITEM, new Identifier(Archipelago.MODID, name), item);
+        return Registry.register(Registries.ITEM, new Identifier(Archipelago.MODID, name), item);
     }
 
     public static void register() {}

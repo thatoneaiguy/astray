@@ -31,7 +31,7 @@ public class RaycastHelper {
         // Perform the raycast with a max range of 25 blocks
         RaycastContext context = new RaycastContext(start, start.add(direction.multiply(range, range, range)),
                 ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, player);
-        BlockHitResult hitResult = player.world.raycast(context);
+        BlockHitResult hitResult = player.getWorld().raycast(context);
 
         // If a block is hit, return the block position and the distance
         if (hitResult != null && hitResult.getType() == BlockHitResult.Type.BLOCK) {

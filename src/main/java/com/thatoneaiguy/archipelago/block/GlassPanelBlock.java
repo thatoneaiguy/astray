@@ -42,13 +42,13 @@ public class GlassPanelBlock extends FacingBlock implements Waterloggable, Priva
 
 	public GlassPanelBlock(AbstractBlock.Settings settings) {
 		super(settings);
-		this.setDefaultState((BlockState)((BlockState)super.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.SOUTH).with(OPAQUE, false).with(CLOSED_OPEN, false).with(OPEN_CLOSED, false));
+		this.setDefaultState((super.getDefaultState().with(WATERLOGGED, false)).with(FACING, Direction.SOUTH).with(OPAQUE, false).with(CLOSED_OPEN, false).with(OPEN_CLOSED, false));
 	}
 
 	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		boolean openClosed = (Boolean)state.get(OPEN_CLOSED);
-		boolean closedOpen = (Boolean)state.get(CLOSED_OPEN);
+		boolean openClosed = state.get(OPEN_CLOSED);
+		boolean closedOpen = state.get(CLOSED_OPEN);
 
 		if ( !openClosed && !closedOpen ) {
 			this.toggle(state, world, pos);
@@ -66,7 +66,7 @@ public class GlassPanelBlock extends FacingBlock implements Waterloggable, Priva
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (context.isHolding(this.asItem())) {
 			VoxelShape var10000;
-			switch ((Direction)state.get(FACING)) {
+			switch (state.get(FACING)) {
 				case NORTH:
 					var10000 = NORTH_SHAPE;
 					break;
@@ -98,7 +98,7 @@ public class GlassPanelBlock extends FacingBlock implements Waterloggable, Priva
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		VoxelShape var10000;
-		switch ((Direction)state.get(FACING)) {
+		switch (state.get(FACING)) {
 			case NORTH:
 				var10000 = NORTH_COLLISION_SHAPE;
 				break;
@@ -137,7 +137,7 @@ public class GlassPanelBlock extends FacingBlock implements Waterloggable, Priva
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if ((Boolean)state.get(WATERLOGGED)) {
-			world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+			world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
 		}
 
 		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -156,17 +156,17 @@ public class GlassPanelBlock extends FacingBlock implements Waterloggable, Priva
 			}
 		}
 
-		return (BlockState)((BlockState)this.getDefaultState().with(FACING, facing)).with(WATERLOGGED, world.getFluidState(pos).getFluid().equals(Fluids.WATER));
+		return this.getDefaultState().with(FACING, facing).with(WATERLOGGED, world.getFluidState(pos).getFluid().equals(Fluids.WATER));
 	}
 
 	@Override
 	public FluidState getFluidState(BlockState state) {
-		return (Boolean)state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
 	}
 
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(new Property[]{FACING, WATERLOGGED});
+		builder.add(FACING, WATERLOGGED);
 	}
 
 	@Override
@@ -205,10 +205,12 @@ public class GlassPanelBlock extends FacingBlock implements Waterloggable, Priva
 		}
 	}
 
+	/*REMOVED 1.20.1 port
 	@Override
 	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
 		return false;
 	}
+	*/
 
 	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
 		return world.getMaxLightLevel();

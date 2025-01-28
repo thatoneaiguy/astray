@@ -55,7 +55,7 @@ public class ArchipelagoClient implements ClientModInitializer {
             client.execute(() -> {
                 ClientPlayerEntity player = client.player;
                 if (player != null) {
-                    client.player.world.addParticle(ArchipelagoParticles.VASE_BREAK_PARTICLE, position.getX(), position.getY(), position.getZ(), 0.0, 0.0, 0.0);
+                    client.player.getWorld().addParticle(ArchipelagoParticles.VASE_BREAK_PARTICLE, position.getX(), position.getY(), position.getZ(), 0.0, 0.0, 0.0);
                     double distance = player.getPos().distanceTo(position);
                 }
 

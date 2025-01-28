@@ -49,10 +49,13 @@ public class PrivacyGlassBlock extends GlassBlock implements PrivacyBlock {
 		builder.add(new Property[]{OPAQUE, INTERACTION_COOLDOWN, OPEN_CLOSED, CLOSED_OPEN});
 	}
 
+
+	/*REMOVED 1.20.1 port
 	@Override
 	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
 		return true;
 	}
+	*/
 
 	@Override
 	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {

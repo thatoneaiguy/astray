@@ -42,10 +42,12 @@ public class PrivacyGlassPanelBlock extends GlassPanelBlock implements PrivacyBl
 		super.appendProperties(builder);
 	}
 
+	/*REMOVED 1.20.1 port
 	@Override
 	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
 		return false;
 	}
+	*/
 
 	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
 		return world.getMaxLightLevel();

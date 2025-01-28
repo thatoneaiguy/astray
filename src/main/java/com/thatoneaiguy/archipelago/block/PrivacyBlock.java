@@ -48,7 +48,7 @@ public interface PrivacyBlock {
 				diagonalState = world.getBlockState(diagonalPos);
 				if (this.canToggle(diagonalState) && (Boolean)diagonalState.get(OPAQUE) != opaque) {
 					changedDirections.add(direction);
-					world.createAndScheduleBlockTick(diagonalPos, diagonalState.getBlock(), 1);
+					world.scheduleBlockTick(diagonalPos, diagonalState.getBlock(), 1);
 				}
 			}
 
@@ -61,7 +61,7 @@ public interface PrivacyBlock {
 					diagonalPos = this.offsetDiagonal(pos, diagonal);
 					diagonalState = world.getBlockState(diagonalPos);
 					if (this.canToggle(diagonalState) && (Boolean)diagonalState.get(OPAQUE) != opaque) {
-						world.createAndScheduleBlockTick(diagonalPos, diagonalState.getBlock(), 1);
+						world.scheduleBlockTick(diagonalPos, diagonalState.getBlock(), 1);
 					}
 				}
 			}

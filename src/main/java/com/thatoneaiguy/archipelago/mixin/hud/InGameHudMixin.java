@@ -6,6 +6,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.thatoneaiguy.archipelago.Archipelago;
 import com.thatoneaiguy.archipelago.util.LocationHelper;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
@@ -18,8 +19,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import static net.minecraft.client.gui.DrawableHelper.drawTexture;
 
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
@@ -36,9 +35,9 @@ public class InGameHudMixin {
     @WrapMethod(
             method = "renderStatusBars"
     )
-    private void archipelago$renderStatusBars(MatrixStack matrices, Operation<Void> original) {
+    private void archipelago$renderStatusBars(DrawContext context, Operation<Void> original) {
         if (!LocationHelper.isPlayerInArchipelago(client.player)) {
-            original.call(matrices);
+            original.call(context);
         }
     }
 
@@ -50,9 +49,9 @@ public class InGameHudMixin {
     @WrapMethod(
             method = "renderStatusEffectOverlay"
     )
-    private void archipelago$renderStatusEffectOverlay(MatrixStack matrices, Operation<Void> original) {
+    private void archipelago$renderStatusEffectOverlay(DrawContext context, Operation<Void> original) {
         if (!LocationHelper.isPlayerInArchipelago(client.player)) {
-            original.call(matrices);
+            original.call(context);
         }
     }
 
@@ -62,7 +61,7 @@ public class InGameHudMixin {
      * health bar
      */
     @Inject(method = "renderExperienceBar", at = @At("HEAD"), cancellable = true)
-    private void archipelago$modifyExperienceBar(MatrixStack matrices, int x, CallbackInfo ci) {
+    private void archipelago$modifyExperienceBar(DrawContext context, int x, CallbackInfo ci) {
         if (LocationHelper.isPlayerInArchipelago(client.player)) {
             MinecraftClient client = MinecraftClient.getInstance();
             PlayerEntity player = client.player;
@@ -85,16 +84,16 @@ public class InGameHudMixin {
             if (healTicksRemaining > 0) healTicksRemaining--;
 
             boolean stayGreen = healTicksRemaining > 0;
-            renderModifiedXpBar(matrices, x, mainHealthPercentage, stayGreen);
+            renderModifiedXpBar(context, x, mainHealthPercentage, stayGreen);
 
             if (extraHealth > 0) {
-                renderExtraHealthBar(matrices, x, extraHealth);
+                renderExtraHealthBar(context, x, extraHealth);
             }
         }
     }
 
     @Unique
-    private void renderModifiedXpBar(MatrixStack matrices, int x, float healthPercentage, boolean stayGreen) {
+    private void renderModifiedXpBar(DrawContext context, int x, float healthPercentage, boolean stayGreen) {
         MinecraftClient client = MinecraftClient.getInstance();
         int yPos = client.getWindow().getScaledHeight() - 32;
         int barWidth = 182;
@@ -106,17 +105,17 @@ public class InGameHudMixin {
 
         int barColor = stayGreen ? healingColor : interpolateColor(lowHealthColor, highHealthColor, healthPercentage);
 
-        client.getTextureManager().bindTexture(new Identifier("textures/gui/icons.png"));
+        Identifier TEXTURE = new Identifier("textures/gui/icons.png");
 
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrices, x, yPos, 0, 64, barWidth, 5, 256, 256);
+        context.drawTexture(TEXTURE, x, yPos, 0, 64, barWidth, 5, 256, 256);
 
         float r = ((barColor >> 16) & 0xFF) / 255.0F;
         float g = ((barColor >> 8) & 0xFF) / 255.0F;
         float b = (barColor & 0xFF) / 255.0F;
         RenderSystem.setShaderColor(r, g, b, 1.0F);
-        drawTexture(matrices, x, yPos, 0, 69, filledWidth, 5, 256, 256);
+        context.drawTexture(TEXTURE, x, yPos, 0, 69, filledWidth, 5, 256, 256);
 
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
     }
@@ -126,7 +125,7 @@ public class InGameHudMixin {
      * yes this is a fortnite shield reference
      */
     @Unique
-    private void renderExtraHealthBar(MatrixStack matrices, int x, float extraHealth) {
+    private void renderExtraHealthBar(DrawContext context, int x, float extraHealth) {
         MinecraftClient client = MinecraftClient.getInstance();
         int yPos = client.getWindow().getScaledHeight() - 32;
         int barWidth = 182;
@@ -136,14 +135,14 @@ public class InGameHudMixin {
 
         int blueColor = 0xFF5865F2;
 
-        client.getTextureManager().bindTexture(new Identifier("textures/gui/icons.png"));
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        Identifier TEXTURE = new Identifier("textures/gui/icons.png");
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 
         float r = ((blueColor >> 16) & 0xFF) / 255.0F;
         float g = ((blueColor >> 8) & 0xFF) / 255.0F;
         float b = (blueColor & 0xFF) / 255.0F;
         RenderSystem.setShaderColor(r, g, b, 1.0F);
-        drawTexture(matrices, x, yPos, 0, 69, filledWidth, 5, 256, 256);
+        context.drawTexture(TEXTURE, x, yPos, 0, 69, filledWidth, 5, 256, 256);
 
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
     }

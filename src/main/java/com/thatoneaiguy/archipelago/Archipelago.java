@@ -25,10 +25,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +39,7 @@ public class Archipelago implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("Astray Archipelago");
 
 	public static final Identifier PRIVACY_GLASS_TOGGLE = new Identifier("archipelago:privacy_glass_toggle");
-	public static SoundEvent PRIVACY_GLASS_TOGGLE_EVENT = new SoundEvent(PRIVACY_GLASS_TOGGLE);
+	public static SoundEvent PRIVACY_GLASS_TOGGLE_EVENT = new SoundEvent(PRIVACY_GLASS_TOGGLE, 10, true);
 
 	@Override
 	public void onInitialize() {
@@ -48,7 +48,7 @@ public class Archipelago implements ModInitializer {
 		ArchipelagoItems.register();
 		ArchipelagoBlocks.registerAll();
 		ArchipelagoConfiguredFeatures.register();
-		Registry.register(Registry.SOUND_EVENT, PRIVACY_GLASS_TOGGLE, PRIVACY_GLASS_TOGGLE_EVENT);
+		Registry.register(Registries.SOUND_EVENT, PRIVACY_GLASS_TOGGLE, PRIVACY_GLASS_TOGGLE_EVENT);
 		ArchipelagoStripping.register();
 		ArchipelagoParticles.register();
 		ArchipelagoDamageSources.register();

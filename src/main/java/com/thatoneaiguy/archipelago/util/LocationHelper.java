@@ -1,9 +1,8 @@
 package com.thatoneaiguy.archipelago.util;
 
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 
 public class LocationHelper {

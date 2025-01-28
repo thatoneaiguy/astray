@@ -13,10 +13,11 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Instrument;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -70,15 +71,15 @@ public class ArchipelagoBlocks {
 
     private static void registerBlock(String name, Block block) {
         registerBlockItem(name, block);
-        Registry.register(Registry.BLOCK, new Identifier(Archipelago.MODID, name), block);
+        Registry.register(Registries.BLOCK, new Identifier(Archipelago.MODID, name), block);
     }
 
     private static void registerBlockItem(String name, Block block) {
-        Registry.register(Registry.ITEM, new Identifier(Archipelago.MODID, name),
+        Registry.register(Registries.ITEM, new Identifier(Archipelago.MODID, name),
                 new BlockItem(block, new FabricItemSettings()));
     }
 
     private static void registerBlockWithoutBlockItem(String name, Block block) {
-        Registry.register(Registry.BLOCK, new Identifier(Archipelago.MODID, name), block);
+        Registry.register(Registries.BLOCK, new Identifier(Archipelago.MODID, name), block);
     }
 }

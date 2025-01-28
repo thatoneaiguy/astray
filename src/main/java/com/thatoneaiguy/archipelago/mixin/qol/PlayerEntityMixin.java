@@ -30,9 +30,9 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 		if (tool.getItem() instanceof Starweaver) {
 			if (attackPower > .8f) {
 				float pitch = .9f + (player.getRandom().nextFloat() * .2f);
-				player.world.playSound(null, player.getX(), player.getY(), player.getZ(),
+				player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),
 						SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, SoundCategory.PLAYERS, 1.f, pitch);
-				player.world.playSound(null, player.getX(), player.getY(), player.getZ(),
+				player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(),
 						SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.PLAYERS, 1.f, pitch);
 			}
 		}

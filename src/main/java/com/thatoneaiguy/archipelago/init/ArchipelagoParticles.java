@@ -6,8 +6,9 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class ArchipelagoParticles {
     public static final DefaultParticleType VASE_BREAK_PARTICLE = FabricParticleTypes.simple();
@@ -19,9 +20,9 @@ public class ArchipelagoParticles {
     }
 
     public static void register() {
-        Registry.register(Registry.PARTICLE_TYPE, new Identifier(Archipelago.MODID, "vase_break_particle"),
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier(Archipelago.MODID, "vase_break_particle"),
                 VASE_BREAK_PARTICLE);
-        Registry.register(Registry.PARTICLE_TYPE, new Identifier(Archipelago.MODID, "blood"),
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier(Archipelago.MODID, "blood"),
                 BLOOD);
     }
 }

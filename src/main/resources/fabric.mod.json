@@ -11,7 +11,15 @@
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "DONT STEAL MY SHIT (D.S.M.S) V1.0.0",
+
+	"custom": {
+		"modmenu": {
+			"parent": "koil",
+			"update_checker": true
+		}
+	},
+
+	"license": "DONT STEAL MY SHIT (D.S.M.S)",
 	"icon": "assets/archipelago/icon.png",
 	"environment": "*",
 	"entrypoints": {

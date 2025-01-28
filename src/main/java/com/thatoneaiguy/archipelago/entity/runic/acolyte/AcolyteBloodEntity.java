@@ -33,7 +33,7 @@ public class AcolyteBloodEntity extends VexEntity {
 
     @Override
     public void tick() {
-        this.world.addParticle(ArchipelagoParticles.BLOOD, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
+        this.getWorld().addParticle(ArchipelagoParticles.BLOOD, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
 
         super.tick();
     }
@@ -47,7 +47,7 @@ public class AcolyteBloodEntity extends VexEntity {
         this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 3.0F, 1.0F));
         this.goalSelector.add(10, new LookAtEntityGoal(this, MobEntity.class, 8.0F));
         this.targetSelector.add(1, (new RevengeGoal(this, new Class[]{RaiderEntity.class})).setGroupRevenge(new Class[0]));
-        this.targetSelector.add(3, new ActiveTargetGoal(this, ArchipelagoEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal(this, ArchipelagoEntity.class, true));
     }
 
     /*@Override

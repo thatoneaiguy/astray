@@ -9,9 +9,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Quaternion;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
 
 import java.util.function.Consumer;
 
@@ -59,7 +57,7 @@ public class VaseBreakParticle extends ExplosionLargeParticle {
         float h = (float)(MathHelper.lerp((double)tickDelta, this.prevPosZ, this.z) - vec3d.getZ());
         Quaternion quaternion = new Quaternion((Vec3f) Util.make(new Vec3f(1.0F, 1.0F, 1.0F), Vec3f::normalize), 0.0F, true);
         rotator.accept(quaternion);
-        Vec3f[] vec3fs = new Vec3f[]{new Vec3f(-1.0F, -1.0F, 0.0F), new Vec3f(-1.0F, 1.0F, 0.0F), new Vec3f(1.0F, 1.0F, 0.0F), new Vec3f(1.0F, -1.0F, 0.0F)};
+        Vec3f[] vec3fs = new Vec3f[][]{new Vec3f(-1.0F, -1.0F, 0.0F), new Vec3f(-1.0F, 1.0F, 0.0F), new Vec3f(1.0F, 1.0F, 0.0F), new Vec3f(1.0F, -1.0F, 0.0F)};
         float size = this.getSize(tickDelta);
 
         int brightness;

@@ -7,10 +7,9 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.passive.BatEntity;
-import net.minecraft.entity.passive.BeeEntity;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class ArchipelagoEntities {
     /*public static final EntityType<GooberEntity> GOOBER_ENTITY_TYPE = Registry.register(
@@ -23,14 +22,14 @@ public class ArchipelagoEntities {
 
     // ABILITES
     public static final EntityType<TotemEntity> TOTEM_ENTITY_TYPE = Registry.register(
-            Registry.ENTITY_TYPE,
+            Registries.ENTITY_TYPE,
             new Identifier(Archipelago.MODID, "totem"),
             FabricEntityTypeBuilder.<TotemEntity>create(SpawnGroup.MISC, TotemEntity::new)
                     .dimensions(EntityDimensions.fixed(2F, 2F))
                     .fireImmune()
                     .build());
     public static final EntityType<AcolyteBloodEntity> BLOOD_ENTITY_TYPE = Registry.register(
-            Registry.ENTITY_TYPE,
+            Registries.ENTITY_TYPE,
             new Identifier(Archipelago.MODID, "blood"),
             FabricEntityTypeBuilder.<AcolyteBloodEntity>create(SpawnGroup.MISC, AcolyteBloodEntity::new)
                     .dimensions(EntityDimensions.fixed(0.3F, 0.3F))
