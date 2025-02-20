@@ -1,6 +1,7 @@
 {
   "carvers": {},
-  "downfall": 0.0,
+  "downfall": 0,
+  "has_precipitation": false,
   "effects": {
     "fog_color": 10518688,
     "sky_color": 0,
@@ -8,7 +9,9 @@
     "water_fog_color": 329011
   },
   "features": [
-    ["archipelago:enigma"],
+    [
+      "archipelago:enigma"
+    ],
     [],
     [],
     [],
@@ -32,5 +35,5 @@
     "water_ambient": [],
     "water_creature": []
   },
-  "temperature": 0.0
+  "temperature": 0
 }

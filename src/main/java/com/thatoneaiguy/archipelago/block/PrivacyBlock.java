@@ -32,9 +32,9 @@ public interface PrivacyBlock {
 		if ((Boolean)state.get(INTERACTION_COOLDOWN)) {
 			world.setBlockState(pos, (BlockState)state.with(INTERACTION_COOLDOWN, false));
 		} else {
-			world.playSound((PlayerEntity) null, pos, Archipelago.PRIVACY_GLASS_TOGGLE_EVENT, SoundCategory.BLOCKS, 0.5F, opaque ? 1.0F : 1.2F);
+			 world.playSound((PlayerEntity) null, pos, Archipelago.PRIVACY_GLASS_TOGGLE_EVENT, SoundCategory.BLOCKS, 0.5F, opaque ? 1.0F : 1.2F);
 			world.setBlockState(pos, (BlockState)((BlockState)state.with(OPAQUE, opaque)).with(INTERACTION_COOLDOWN, true).with(OPEN_CLOSED, false).with(CLOSED_OPEN, false));
-			world.createAndScheduleBlockTick(pos, state.getBlock(), COOLDOWN);
+			world.scheduleBlockTick(pos, state.getBlock(), COOLDOWN);
 			Set<Direction> changedDirections = EnumSet.noneOf(Direction.class);
 			Direction[] var6 = Direction.values();
 			int var7 = var6.length;

@@ -19,7 +19,7 @@ public class WorldRendererMixin {
     @Shadow private ClientWorld world;
     @Shadow private MinecraftClient client;
 
-/*
+    /*
     @Unique private CustomVoidConfig VOID_CONFIG = CustomVoid.VOID_CONFIG;
 
     @Redirect(
@@ -64,7 +64,7 @@ public class WorldRendererMixin {
     }*/
 
     @Redirect(
-            method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/util/math/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V",
+            method = "renderSky(Lnet/minecraft/client/util/math/MatrixStack;Lorg/joml/Matrix4f;FLnet/minecraft/client/render/Camera;ZLjava/lang/Runnable;)V",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/world/ClientWorld$Properties;getSkyDarknessHeight(Lnet/minecraft/world/HeightLimitView;)D"

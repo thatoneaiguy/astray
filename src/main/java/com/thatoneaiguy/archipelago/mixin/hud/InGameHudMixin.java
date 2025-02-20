@@ -62,7 +62,7 @@ public class InGameHudMixin {
      */
     @Inject(method = "renderExperienceBar", at = @At("HEAD"), cancellable = true)
     private void archipelago$modifyExperienceBar(DrawContext context, int x, CallbackInfo ci) {
-        if (LocationHelper.isPlayerInArchipelago(client.player)) {
+        /*if (LocationHelper.isPlayerInArchipelago(client.player)) {
             MinecraftClient client = MinecraftClient.getInstance();
             PlayerEntity player = client.player;
 
@@ -89,10 +89,10 @@ public class InGameHudMixin {
             if (extraHealth > 0) {
                 renderExtraHealthBar(context, x, extraHealth);
             }
-        }
+        }*/
     }
 
-    @Unique
+    /*@Unique
     private void renderModifiedXpBar(DrawContext context, int x, float healthPercentage, boolean stayGreen) {
         MinecraftClient client = MinecraftClient.getInstance();
         int yPos = client.getWindow().getScaledHeight() - 32;
@@ -118,13 +118,13 @@ public class InGameHudMixin {
         context.drawTexture(TEXTURE, x, yPos, 0, 69, filledWidth, 5, 256, 256);
 
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-    }
+    }*/
 
     /**
      * manages the blue extra health bar
      * yes this is a fortnite shield reference
      */
-    @Unique
+    /*@Unique
     private void renderExtraHealthBar(DrawContext context, int x, float extraHealth) {
         MinecraftClient client = MinecraftClient.getInstance();
         int yPos = client.getWindow().getScaledHeight() - 32;
@@ -145,13 +145,13 @@ public class InGameHudMixin {
         context.drawTexture(TEXTURE, x, yPos, 0, 69, filledWidth, 5, 256, 256);
 
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-    }
+    }*/
 
     /**
      * still for the health bar, but should probably specify that this manages the
      * colour interpolation
      */
-    @Unique
+    /*@Unique
     private int interpolateColor(int startColor, int endColor, float percentage) {
         int startRed = (startColor >> 16) & 0xFF;
         int startGreen = (startColor >> 8) & 0xFF;
@@ -166,5 +166,5 @@ public class InGameHudMixin {
         int newBlue = (int) (startBlue + (endBlue - startBlue) * percentage);
 
         return (0xFF << 24) | (newRed << 16) | (newGreen << 8) | newBlue;
-    }
+    }*/
 }

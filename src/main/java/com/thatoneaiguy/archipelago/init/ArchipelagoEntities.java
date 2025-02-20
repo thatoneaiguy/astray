@@ -1,6 +1,7 @@
 package com.thatoneaiguy.archipelago.init;
 
 import com.thatoneaiguy.archipelago.Archipelago;
+import com.thatoneaiguy.archipelago.entity.RiftEntity;
 import com.thatoneaiguy.archipelago.entity.runic.TotemEntity;
 import com.thatoneaiguy.archipelago.entity.runic.acolyte.AcolyteBloodEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -19,6 +20,13 @@ public class ArchipelagoEntities {
                     .dimensions(EntityDimensions.fixed(0.5F, 0.5F))
                     .fireImmune()
                     .build());*/
+    public static final EntityType<RiftEntity> RIFT_ENTITY_TYPE = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(Archipelago.MODID, "rift"),
+            FabricEntityTypeBuilder.<RiftEntity>create(SpawnGroup.MISC, RiftEntity::new)
+                    .dimensions(EntityDimensions.fixed(2F, 2F))
+                    .fireImmune()
+                    .build());
 
     // ABILITES
     public static final EntityType<TotemEntity> TOTEM_ENTITY_TYPE = Registry.register(

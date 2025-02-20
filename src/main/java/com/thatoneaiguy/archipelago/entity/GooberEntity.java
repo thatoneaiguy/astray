@@ -1,4 +1,4 @@
-package com.thatoneaiguy.archipelago.entity;
+/*package com.thatoneaiguy.archipelago.entity;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
@@ -93,4 +93,4 @@ public class GooberEntity extends ArchipelagoEntity implements IAnimatable {
     public AnimationFactory getFactory() {
         return factory;
     }
-}
+}*/

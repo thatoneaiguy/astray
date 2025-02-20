@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ArchipelagoConfiguredFeatures {
 
-    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> CRYSTAL_TREE =
+    /*public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> CRYSTAL_TREE =
             ConfiguredFeatures.register("crystal_tree", Feature.TREE, new TreeFeatureConfig.Builder(
                     BlockStateProvider.of(ArchipelagoBlocks.CRYSTAL_LOG),
                     new BendingTrunkPlacer(4, 2, 0, 3, UniformIntProvider.create(1, 2)),
@@ -32,7 +32,7 @@ public class ArchipelagoConfiguredFeatures {
     public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> CRYSTAL_SPAWN =
             ConfiguredFeatures.register("crystal_spawn", Feature.RANDOM_SELECTOR,
                     new RandomFeatureConfig(List.of(new RandomFeatureEntry(CRYSTAL_CHECKED, 0.5f)),
-                            CRYSTAL_CHECKED));
+                            CRYSTAL_CHECKED));*/
 
     public static void register() {}
 }

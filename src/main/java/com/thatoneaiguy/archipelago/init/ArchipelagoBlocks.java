@@ -1,23 +1,18 @@
 package com.thatoneaiguy.archipelago.init;
 
 import com.thatoneaiguy.archipelago.Archipelago;
-import com.thatoneaiguy.archipelago.block.AstralVase;
-import com.thatoneaiguy.archipelago.block.DecorativeVase;
+import com.thatoneaiguy.archipelago.block.ResentmentSink;
 import com.thatoneaiguy.archipelago.block.PrivacyGlassBlock;
 import com.thatoneaiguy.archipelago.block.PrivacyGlassPanelBlock;
-import com.thatoneaiguy.archipelago.world.feature.tree.CrystalSaplingGenerator;
+//import com.thatoneaiguy.archipelago.world.feature.tree.CrystalSaplingGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Instrument;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.random.Random;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,8 +20,7 @@ import java.util.stream.Stream;
 
 public class ArchipelagoBlocks {
 
-    public static final Block ASTRAL_VASE = new AstralVase(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK).requiresTool().strength(1.5F, 6.0F).sounds(BlockSoundGroup.NETHERITE));
-    public static final Block DECORATIVE_VASE = new DecorativeVase(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK).requiresTool().strength(1.50F, 6.0F).sounds(BlockSoundGroup.NETHERITE));
+    public static final Block RESENTMENT_SINK = new ResentmentSink(FabricBlockSettings.copy(Blocks.NETHERITE_BLOCK).requiresTool().strength(1.5F, 6.0F).sounds(BlockSoundGroup.NETHERITE));
 
     public static final Block PRIVACY_GLASS = new PrivacyGlassBlock(FabricBlockSettings.copyOf(Blocks.BLACK_STAINED_GLASS).nonOpaque());
     public static final Block PRIVACY_GLASS_PANEL = new PrivacyGlassPanelBlock(FabricBlockSettings.copyOf(Blocks.BLACK_STAINED_GLASS).sounds(BlockSoundGroup.GLASS).nonOpaque());
@@ -39,11 +33,10 @@ public class ArchipelagoBlocks {
     public static final Block CRYSTAL_PLANKS = new Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS));
     public static final Block CRYSTAL_LEAVES = new LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES));
 
-    public static final Block CRYSTAL_SAPLING = new SaplingBlock(new CrystalSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING));
+    //public static final Block CRYSTAL_SAPLING = new SaplingBlock(new CrystalSaplingGenerator(), FabricBlockSettings.copy(Blocks.OAK_SAPLING));
 
     static Map<String, Object> BLOCKS = Stream.of(new Object[][] {
-            {"astral_vase", ASTRAL_VASE},
-            {"decorative_vase", DECORATIVE_VASE},
+            {"resentment_sink", RESENTMENT_SINK},
 
             {"privacy_glass", PRIVACY_GLASS},
             {"privacy_glass_panel", PRIVACY_GLASS_PANEL},
@@ -56,7 +49,7 @@ public class ArchipelagoBlocks {
             {"crystal_planks", CRYSTAL_PLANKS},
             {"crystal_leaves", CRYSTAL_LEAVES},
 
-            {"crystal_sapling", CRYSTAL_SAPLING}
+            //{"crystal_sapling", CRYSTAL_SAPLING}
 
     }).collect(Collectors.toMap(entry -> (String) entry[0], entry -> entry[1]));
 

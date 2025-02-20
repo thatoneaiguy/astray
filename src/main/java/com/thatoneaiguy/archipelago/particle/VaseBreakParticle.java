@@ -13,7 +13,7 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.function.Consumer;
 
-public class VaseBreakParticle extends ExplosionLargeParticle {
+/*public class VaseBreakParticle extends ExplosionLargeParticle {
     public VaseBreakParticle(ClientWorld world, double x, double y, double z, double d, SpriteProvider spriteProvider) {
         super(world, x, y, z, d, spriteProvider);
         this.maxAge = 24;
@@ -99,4 +99,4 @@ public class VaseBreakParticle extends ExplosionLargeParticle {
             return new VaseBreakParticle(clientWorld, d, e, f, g, this.spriteProvider);
         }
     }
-}
+}*/

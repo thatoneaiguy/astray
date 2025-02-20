@@ -1,27 +1,18 @@
 {
-  "block.archipelago.astral_vase": "Astral Vase",
-  "block.archipelago.decorative_vase": "Astral Vase",
+  "block.archipelago.crystal_leaves": "Crystal Leaves",
+  "block.archipelago.crystal_log": "Crystal Log",
+  "block.archipelago.crystal_planks": "Crystal Planks",
+  "block.archipelago.crystal_sapling": "Crystal Sapling",
+  "block.archipelago.crystal_wood": "Crystal Wood",
   "block.archipelago.privacy_glass": "Privacy Glass",
   "block.archipelago.privacy_glass_panel": "Privacy Glass Panel",
-
-  "block.archipelago.crystal_log": "Crystal Log",
-  "block.archipelago.crystal_wood": "Crystal Wood",
+  "block.archipelago.resentment_sink": "Resentment Sink",
   "block.archipelago.stripped_crystal_log": "Stripped Crystal Log",
   "block.archipelago.stripped_crystal_wood": "Stripped Crystal Wood",
-  "block.archipelago.crystal_planks": "Crystal Planks",
-  "block.archipelago.crystal_leaves": "Crystal Leaves",
-  "block.archipelago.crystal_sapling": "Crystal Sapling",
-
-  "item.archipelago.starweaver": "✦ Starweaver ✦",
   "item.archipelago.enigma_shard": "Enigma Shard",
-
-  "item.archipelago.grapple_hook": "Grappling Hook",
   "item.archipelago.glider": "Glider",
-
-  "trinkets.slot.head.trim": "Trims",
-
-  "itemgroup.archipelago.archipelago_group": "Astray Archipelago",
-
-  "death.attack.compression": "%1$s literally reached for the stars",
-  "death.attack.compression.player": "%1$s literally reached for the stars"
+  "item.archipelago.grapple_hook": "Grappling Hook",
+  "item.archipelago.jar": "Jar",
+  "item.archipelago.starweaver": "✦ Starweaver ✦",
+  "itemgroup.archipelago.archipelago_group": "Astray Archipelago"
 }

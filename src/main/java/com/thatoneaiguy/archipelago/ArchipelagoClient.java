@@ -4,7 +4,8 @@ import com.thatoneaiguy.archipelago.init.ArchipelagoBlocks;
 import com.thatoneaiguy.archipelago.init.ArchipelagoEntities;
 import com.thatoneaiguy.archipelago.init.ArchipelagoParticles;
 import com.thatoneaiguy.archipelago.packet.VaseBreakPacket;
-import com.thatoneaiguy.archipelago.particle.VaseBreakParticle;
+//import com.thatoneaiguy.archipelago.particle.VaseBreakParticle;
+import com.thatoneaiguy.archipelago.render.entity.RiftRenderer;
 import com.thatoneaiguy.archipelago.render.entity.abilities.runic.TotemEntityModel;
 import com.thatoneaiguy.archipelago.render.entity.abilities.runic.TotemEntityRenderer;
 import com.thatoneaiguy.archipelago.render.entity.abilities.runic.acolyte.AcolyteBloodEntityRenderer;
@@ -32,7 +33,7 @@ public class ArchipelagoClient implements ClientModInitializer {
     public void onInitializeClient() {
         MinecraftClient client = MinecraftClient.getInstance();
 
-        ParticleFactoryRegistry.getInstance().register(ArchipelagoParticles.VASE_BREAK_PARTICLE, VaseBreakParticle.Factory::new);
+        //ParticleFactoryRegistry.getInstance().register(ArchipelagoParticles.VASE_BREAK_PARTICLE, VaseBreakParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ArchipelagoParticles.BLOOD, FlameParticle.Factory::new);
 
         registerRenderLayerMaps();
@@ -45,6 +46,7 @@ public class ArchipelagoClient implements ClientModInitializer {
     private void registerEntityRenderers() {
         EntityRendererRegistry.register(ArchipelagoEntities.TOTEM_ENTITY_TYPE, TotemEntityRenderer::new);
         EntityRendererRegistry.register(ArchipelagoEntities.BLOOD_ENTITY_TYPE, AcolyteBloodEntityRenderer::new);
+        EntityRendererRegistry.register(ArchipelagoEntities.RIFT_ENTITY_TYPE, RiftRenderer::new);
 
         EntityModelLayerRegistry.registerModelLayer(MODEL_TEST_LAYER, TotemEntityModel::getTexturedModelData);
     }
@@ -64,10 +66,10 @@ public class ArchipelagoClient implements ClientModInitializer {
     }
 
     private void registerRenderLayerMaps() {
-        BlockRenderLayerMap.INSTANCE.putBlock(ArchipelagoBlocks.ASTRAL_VASE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ArchipelagoBlocks.RESENTMENT_SINK, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ArchipelagoBlocks.CRYSTAL_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ArchipelagoBlocks.CRYSTAL_SAPLING, RenderLayer.getCutout());
+        //BlockRenderLayerMap.INSTANCE.putBlock(ArchipelagoBlocks.CRYSTAL_SAPLING, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ArchipelagoBlocks.PRIVACY_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ArchipelagoBlocks.PRIVACY_GLASS_PANEL, RenderLayer.getTranslucent());

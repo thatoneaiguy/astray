@@ -1,27 +1,6 @@
 {
-  "type": "minecraft:block",
+  "type": "minecraft:generic",
   "pools": [
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "archipelago:astral_vase"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:match_tool",
-          "predicate": {
-            "enchantments": [
-              {
-                "enchantment": "minecraft:silk_touch"
-              }
-            ]
-          }
-        }
-      ]
-    },
     {
       "rolls": 2,
       "entries": [

@@ -1,7 +1,7 @@
 package com.thatoneaiguy.archipelago.init;
 
 import com.thatoneaiguy.archipelago.Archipelago;
-import com.thatoneaiguy.archipelago.particle.VaseBreakParticle;
+//import com.thatoneaiguy.archipelago.particle.VaseBreakParticle;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.client.particle.FlameParticle;
@@ -16,7 +16,7 @@ public class ArchipelagoParticles {
 
     static void registerFactories() {
         ParticleFactoryRegistry.getInstance().register(BLOOD, FlameParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(VASE_BREAK_PARTICLE, VaseBreakParticle.Factory::new);
+        //ParticleFactoryRegistry.getInstance().register(VASE_BREAK_PARTICLE, VaseBreakParticle.Factory::new);
     }
 
     public static void register() {

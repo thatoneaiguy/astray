@@ -1,7 +1,0 @@
-{
-  "icon": "archipelago:gui/slots/trim",
-  "drop_rule": "keep",
-  "order": -1000,
-  "amount": 2,
-  "validator_predicates": ""
-}
