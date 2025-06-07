@@ -1,49 +1,32 @@
 package com.thatoneaiguy.archipelago;
 
-import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.thatoneaiguy.archipelago.entity.runic.TotemEntity;
 import com.thatoneaiguy.archipelago.entity.runic.acolyte.AcolyteBloodEntity;
 import com.thatoneaiguy.archipelago.init.*;
 import com.thatoneaiguy.archipelago.util.ArchipelagoStripping;
-import com.thatoneaiguy.archipelago.util.CameraUtils;
 import com.thatoneaiguy.archipelago.util.DelayedActionHandler;
 import com.thatoneaiguy.archipelago.util.runic.magic.RelikServerHandler;
 import com.thatoneaiguy.archipelago.world.feature.ArchipelagoConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
-
-import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
-import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.fabricmc.fabric.api.biome.v1.BiomeModification;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.minecraft.block.InventoryProvider;
-import net.minecraft.client.gui.screen.ingame.InventoryScreen;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.option.CloudRenderMode;
-import net.minecraft.client.particle.CloudParticle;
-import net.minecraft.client.render.entity.ArmorStandEntityRenderer;
-import net.minecraft.client.render.entity.model.ArmorStandArmorEntityModel;
-import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.entity.player.HungerManager;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeKeys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,9 +46,11 @@ public class Archipelago implements ModInitializer {
 			new Identifier("minecraft", "chests/stronghold_crossing")
 	);
 
+	public static final RegistryKey<ItemGroup> CUSTOM_ITEM_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(MODID, "dev_itemgroup"));
+
 	public static final ItemGroup TEST_GROUP = FabricItemGroup.builder()
 			.icon(() -> new ItemStack(ArchipelagoItems.JAR))
-			.displayName(Text.translatable("itemGroup.tutorial.test_group"))
+			.displayName(Text.translatable("itemGroup.archipelago.test_group"))
 			.entries((context, entries) -> {
 				entries.add(ArchipelagoItems.JAR);
 				entries.add(ArchipelagoItems.RUNIC_TEST_ITEM);
@@ -76,6 +61,8 @@ public class Archipelago implements ModInitializer {
 				entries.add(ArchipelagoItems.GRAPPLE_HOOK);
 				entries.add(ArchipelagoItems.RELIK);
 				entries.add(ArchipelagoItems.STARWEAVER);
+				entries.add(ArchipelagoItems.CAMERA_MODIFICATION_TEST_ITEM);
+				entries.add(ArchipelagoItems.ASTROLOGICAL_GREATSWORD);
 				entries.add(ArchipelagoBlocks.CRYSTAL_LEAVES.asItem());
 				entries.add(ArchipelagoBlocks.CRYSTAL_LOG.asItem());
 				entries.add(ArchipelagoBlocks.CRYSTAL_PLANKS.asItem());
@@ -94,21 +81,35 @@ public class Archipelago implements ModInitializer {
 
 		ArchipelagoItems.register();
 		ArchipelagoBlocks.registerAll();
+		ArchipelagoBlockEntities.initialize();
 		ArchipelagoConfiguredFeatures.register();
-		Registry.register(Registries.SOUND_EVENT, PRIVACY_GLASS_TOGGLE, PRIVACY_GLASS_TOGGLE_EVENT);
 		ArchipelagoStripping.register();
 		ArchipelagoParticles.register();
 		ArchipelagoDamageSources.register();
 		ArchipelagoEntities.register();
+		Registry.register(Registries.SOUND_EVENT, PRIVACY_GLASS_TOGGLE, PRIVACY_GLASS_TOGGLE_EVENT);
 		DelayedActionHandler.register();
-
-		Registry.register(Registries.ITEM_GROUP, new Identifier("archipelago", "test_group"), TEST_GROUP);
-
 		lootTableModifiers();
-		registerCommands();
+
+		ArchipelagoPackets.CHANNEL.initServerListener();
+		ArchipelagoPackets.registerS2C();
+		ArchipelagoEntitySpawning.registerRiftSpawning();
+
+		BiomeModifications.addSpawn(
+				BiomeSelectors.includeByKey(BiomeKeys.FOREST),
+				SpawnGroup.CREATURE,
+				ArchipelagoEntities.RIFT_ENTITY_TYPE,
+				0,
+				1,
+				1
+		);
 
 		RelikServerHandler.register();
 		registerEntityAttributes();
+
+		if ( FabricLoader.getInstance().isDevelopmentEnvironment() ) {
+			Registry.register(Registries.ITEM_GROUP, CUSTOM_ITEM_GROUP_KEY, TEST_GROUP);
+		}
 	}
 
 	private void registerEntityAttributes() {
@@ -116,28 +117,6 @@ public class Archipelago implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ArchipelagoEntities.TOTEM_ENTITY_TYPE, TotemEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ArchipelagoEntities.RIFT_ENTITY_TYPE, TotemEntity.setAttributes());
 		FabricDefaultAttributeRegistry.register(ArchipelagoEntities.BLOOD_ENTITY_TYPE, AcolyteBloodEntity.setAttributes());
-	}
-
-	private void registerCommands() {
-		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-			dispatcher.register(CommandManager.literal("movecam")
-					.then(CommandManager.argument("x", DoubleArgumentType.doubleArg())
-							.then(CommandManager.argument("y", DoubleArgumentType.doubleArg())
-									.then(CommandManager.argument("z", DoubleArgumentType.doubleArg())
-											.executes(ctx -> {
-												double x = DoubleArgumentType.getDouble(ctx, "x");
-												double y = DoubleArgumentType.getDouble(ctx, "y");
-												double z = DoubleArgumentType.getDouble(ctx, "z");
-
-												CameraUtils.moveTo(new Vec3d(x, y, z), 0.05);
-												return 1;
-											})))));
-
-			dispatcher.register(CommandManager.literal("resetcam").executes(ctx -> {
-				CameraUtils.reset();
-				return 1;
-			}));
-		});
 	}
 
 	private void lootTableModifiers() {

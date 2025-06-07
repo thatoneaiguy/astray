@@ -1,5 +1,6 @@
 package com.thatoneaiguy.archipelago.util.runic;
 
+import com.mojang.datafixers.util.Pair;
 import com.thatoneaiguy.archipelago.entity.runic.TotemEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.network.ServerPlayerEntity;

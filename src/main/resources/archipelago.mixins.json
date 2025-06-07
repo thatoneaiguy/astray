@@ -11,8 +11,12 @@
     "defaultRequire": 1
   },
   "client": [
+    "client.BipedEntityModelMixin",
+    "client.PlayerEntityRendererMixin",
+    "hud.HeldItemRendererMixin",
     "hud.InGameHudMixin",
     "vfx.CloudMixin",
+    "vfx.SneezeMixin",
     "vfx.WorldRendererMixin"
   ]
 }

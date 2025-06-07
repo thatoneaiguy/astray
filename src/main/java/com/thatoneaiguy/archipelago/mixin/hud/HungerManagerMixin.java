@@ -14,15 +14,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HungerManager.class)
 public class HungerManagerMixin {
-    @Shadow
+    /*@Shadow
     private int foodLevel = 20;
     @Unique
     MinecraftClient client;
 
-    /**
+    *//**
      * @author eeverest
      * @reason constant sprinting, this prevents loosing sprint
-     */
+     *//*
     @Overwrite
     public void setFoodLevel(int foodLevel) {
         if (!LocationHelper.isPlayerInArchipelago(client.player)) {
@@ -36,5 +36,5 @@ public class HungerManagerMixin {
             , target = "net/minecraft/entity/player/PlayerEntity.damage (Lnet/minecraft/entity/damage/DamageSource;F)Z"), cancellable = true)
     private void archipelago$removeHungerDamage(PlayerEntity player, CallbackInfo ci) {
         ci.cancel();
-    }
+    }*/
 }

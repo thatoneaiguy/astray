@@ -1,5 +1,6 @@
 package com.thatoneaiguy.archipelago.init;
 
+import com.mojang.authlib.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.tag.TagKey;

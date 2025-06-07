@@ -56,7 +56,7 @@ public class BrushMixin {
             BlockPos blockPos = this.archipelago$blockHitResult.getBlockPos();
             BlockEntity blockEntity = world.getBlockEntity(blockPos);
             boolean hasBrushed = false;
-            if (blockEntity instanceof Brushable brushable) {
+            if (blockEntity instanceof Brushable brushable && i > 30) {
                 hasBrushed = brushable.brush(world.getTime(), world, (PlayerEntity) livingEntity2, this.archipelago$blockHitResult.getSide(), blockPos, this.archipelago$blockState);
             } else if (this.archipelago$blockState.getBlock() instanceof Brushable brushable) {
                 hasBrushed = brushable.brush(world.getTime(), world, (PlayerEntity) livingEntity2, this.archipelago$blockHitResult.getSide(), blockPos, this.archipelago$blockState);

@@ -23,7 +23,7 @@ public class ArchipelagoEntities {
     public static final EntityType<RiftEntity> RIFT_ENTITY_TYPE = Registry.register(
             Registries.ENTITY_TYPE,
             new Identifier(Archipelago.MODID, "rift"),
-            FabricEntityTypeBuilder.<RiftEntity>create(SpawnGroup.MISC, RiftEntity::new)
+            FabricEntityTypeBuilder.<RiftEntity>create(SpawnGroup.CREATURE, RiftEntity::new)
                     .dimensions(EntityDimensions.fixed(2F, 2F))
                     .fireImmune()
                     .build());

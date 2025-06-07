@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.thatoneaiguy.archipelago.Archipelago;
+import com.thatoneaiguy.archipelago.util.HotbarRenderingUtil;
 import com.thatoneaiguy.archipelago.util.LocationHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -36,7 +37,7 @@ public class InGameHudMixin {
             method = "renderStatusBars"
     )
     private void archipelago$renderStatusBars(DrawContext context, Operation<Void> original) {
-        if (!LocationHelper.isPlayerInArchipelago(client.player)) {
+        if (HotbarRenderingUtil.isHotbarRendered()) {
             original.call(context);
         }
     }
@@ -50,8 +51,26 @@ public class InGameHudMixin {
             method = "renderStatusEffectOverlay"
     )
     private void archipelago$renderStatusEffectOverlay(DrawContext context, Operation<Void> original) {
-        if (!LocationHelper.isPlayerInArchipelago(client.player)) {
+        if (!LocationHelper.isPlayerInArchipelago(client.player) || HotbarRenderingUtil.isHotbarRendered()) {
             original.call(context);
+        }
+    }
+
+    @WrapMethod(
+            method = "renderExperienceBar"
+    )
+    private void archipelago$hideExperienceBar(DrawContext context, int x, Operation<Void> original) {
+        if (HotbarRenderingUtil.isHotbarRendered()) {
+            original.call(context, x);
+        }
+    }
+
+    @WrapMethod(
+            method = "renderHotbar"
+    )
+    private void archipelago$hideHotbar(float tickDelta, DrawContext context, Operation<Void> original) {
+        if (HotbarRenderingUtil.isHotbarRendered()) {
+            original.call(tickDelta, context);
         }
     }
 

@@ -1,9 +1,7 @@
 package com.thatoneaiguy.archipelago.init;
 
 import com.thatoneaiguy.archipelago.Archipelago;
-import com.thatoneaiguy.archipelago.block.ResentmentSink;
-import com.thatoneaiguy.archipelago.block.PrivacyGlassBlock;
-import com.thatoneaiguy.archipelago.block.PrivacyGlassPanelBlock;
+import com.thatoneaiguy.archipelago.block.*;
 //import com.thatoneaiguy.archipelago.world.feature.tree.CrystalSaplingGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -25,6 +23,8 @@ public class ArchipelagoBlocks {
     public static final Block PRIVACY_GLASS = new PrivacyGlassBlock(FabricBlockSettings.copyOf(Blocks.BLACK_STAINED_GLASS).nonOpaque());
     public static final Block PRIVACY_GLASS_PANEL = new PrivacyGlassPanelBlock(FabricBlockSettings.copyOf(Blocks.BLACK_STAINED_GLASS).sounds(BlockSoundGroup.GLASS).nonOpaque());
 
+    public static final Block JAR_BLOCK = new JarBlock(FabricBlockSettings.copyOf(Blocks.GLASS).nonOpaque());
+
     public static final Block CRYSTAL_LOG = new PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG));
     public static final Block CRYSTAL_WOOD = new PillarBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD));
     public static final Block STRIPPED_CRYSTAL_LOG = new PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_LOG));
@@ -40,6 +40,8 @@ public class ArchipelagoBlocks {
 
             {"privacy_glass", PRIVACY_GLASS},
             {"privacy_glass_panel", PRIVACY_GLASS_PANEL},
+
+            {"jar_block", JAR_BLOCK},
 
             {"crystal_log", CRYSTAL_LOG},
             {"crystal_wood", CRYSTAL_WOOD},

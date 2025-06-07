@@ -9,10 +9,14 @@
   "block.archipelago.resentment_sink": "Resentment Sink",
   "block.archipelago.stripped_crystal_log": "Stripped Crystal Log",
   "block.archipelago.stripped_crystal_wood": "Stripped Crystal Wood",
+
   "item.archipelago.enigma_shard": "Enigma Shard",
   "item.archipelago.glider": "Glider",
   "item.archipelago.grapple_hook": "Grappling Hook",
   "item.archipelago.jar": "Jar",
+
   "item.archipelago.starweaver": "✦ Starweaver ✦",
+  "item.archipelago.astrological_greatsword": "✦ Astrological Greatsword ✦",
+
   "itemgroup.archipelago.archipelago_group": "Astray Archipelago"
 }

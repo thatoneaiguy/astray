@@ -1,5 +1,7 @@
 package com.thatoneaiguy.archipelago.util;
 
+import net.minecraft.client.render.item.ItemRenderer;
+
 public interface DelayedAction {
     void executeDelayedAction();
 
