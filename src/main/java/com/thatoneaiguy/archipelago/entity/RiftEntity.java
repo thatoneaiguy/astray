@@ -1,5 +1,6 @@
 package com.thatoneaiguy.archipelago.entity;
 
+import com.thatoneaiguy.archipelago.Archipelago;
 import com.thatoneaiguy.archipelago.init.ArchipelagoPackets;
 import com.thatoneaiguy.archipelago.packet.CameraModificationS2C;
 import com.thatoneaiguy.archipelago.packet.ResetCameraModificationS2C;
@@ -8,6 +9,8 @@ import nakern.be_camera.camera.CameraData;
 import nakern.be_camera.camera.CameraManager;
 import nakern.be_camera.camera.EaseOptions;
 import nakern.be_camera.easings.Easings;
+import net.minecraft.client.render.LightmapTextureManager;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,6 +19,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
@@ -26,14 +30,23 @@ import team.lodestar.lodestone.systems.particle.builder.WorldParticleBuilder;
 import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import team.lodestar.lodestone.systems.particle.data.spin.SpinParticleData;
+import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParticleRenderType;
+import team.lodestar.lodestone.systems.particle.world.type.LodestoneWorldParticleType;
 
 import java.awt.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public class RiftEntity extends HostileEntity {
     public RiftEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
+    private boolean expanding = false;
+    private int expandTicks = 1;
+    private float currentRadius = 2.0f;
+    private final Set<UUID> collectedPlayers = new HashSet<>();
 
     private boolean collected = false;
 
@@ -41,8 +54,10 @@ public class RiftEntity extends HostileEntity {
 
     @Override
     public void tick() {
+        if (this.getWorld().isClient) createLodestoneParticle(Archipelago.DOT, this.getPos(), (ClientWorld) this.getWorld(), 200, .1f);
+
         checkAndDiscardIfNearby();
-        if (!this.getWorld().isClient && !collected) {
+        if (!this.getWorld().isClient) {
             PlayerEntity player = this.getWorld().getClosestPlayer(this, 2);
             if (player != null) {
                 Vec3d target = findValidCameraTarget(player, this.getWorld());
@@ -72,6 +87,58 @@ public class RiftEntity extends HostileEntity {
 
         if (!nearbyEntities.isEmpty()) {
             this.discard();
+        }
+    }
+
+    public static void createLodestoneParticle(LodestoneWorldParticleType particle, Vec3d globalParticlePos, ClientWorld world, int lifetime, float scale) {
+        java.util.Random random = new java.util.Random();
+
+        Color lightPurple = new Color(237,142, 249, 255);
+        Color darkPurple = new Color(102, 56, 128);
+
+        int particlesPerTick = 1;
+
+        for (int i = 0; i < particlesPerTick; i++) {
+            float speed = 0.01f + random.nextFloat() * 0.03f;
+
+            float theta = (float)(random.nextDouble() * 2 * Math.PI);
+            float phi = (float)(Math.acos(2 * random.nextDouble() - 1));
+
+            float dx = speed * MathHelper.sin(phi) * MathHelper.cos(theta);
+            float dy = speed * MathHelper.cos(phi);
+            float dz = speed * MathHelper.sin(phi) * MathHelper.sin(theta);
+
+            dx += random.nextFloat(-0.01f, 0.01f);
+            dy += random.nextFloat(-0.01f, 0.01f);
+            dz += random.nextFloat(-0.01f, 0.01f);
+
+            WorldParticleBuilder.create(particle)
+                    .enableForcedSpawn()
+                    .setLightLevel(LightmapTextureManager.MAX_LIGHT_COORDINATE)
+                    .setScaleData(GenericParticleData.create(scale).build())
+                    .setTransparencyData(
+                            GenericParticleData.create(0.5f, 0f)
+                                    .setEasing(Easing.CIRC_IN)
+                                    .build()
+                    )
+                    .setColorData(
+                            ColorParticleData.create(lightPurple, darkPurple)
+                                    .setEasing(Easing.CIRC_IN)
+                                    .build()
+                    )
+                    .enableNoClip()
+                    .enableCull()
+                    .setLifetime(lifetime)
+                    .setSpinData(SpinParticleData.create(0f, 0.5f).build())
+                    .setRenderType(LodestoneWorldParticleRenderType.TRANSPARENT)
+                    .setRandomOffset(0.02f)
+                    .setMotion(dx, dy, dz)
+                    .spawn(
+                            world,
+                            globalParticlePos.getX(),
+                            globalParticlePos.getY(),
+                            globalParticlePos.getZ()
+                    );
         }
     }
 

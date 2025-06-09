@@ -28,6 +28,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
+import team.lodestar.lodestone.systems.particle.world.type.LodestoneWorldParticleType;
+
+import static com.thatoneaiguy.archipelago.Archipelago.DOT;
 
 public class ArchipelagoClient implements ClientModInitializer {
     public static final EntityModelLayer MODEL_TEST_LAYER = new EntityModelLayer(new Identifier("archipelago", "test"), "main");
@@ -40,6 +43,7 @@ public class ArchipelagoClient implements ClientModInitializer {
 
         //ParticleFactoryRegistry.getInstance().register(ArchipelagoParticles.VASE_BREAK_PARTICLE, VaseBreakParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ArchipelagoParticles.BLOOD, FlameParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(DOT, LodestoneWorldParticleType.Factory::new);
 
         registerRenderLayerMaps();
         registerClientNetworking();

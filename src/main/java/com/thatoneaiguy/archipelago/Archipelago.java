@@ -29,6 +29,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.BiomeKeys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import team.lodestar.lodestone.systems.particle.world.type.LodestoneWorldParticleType;
 
 import java.util.List;
 
@@ -45,6 +46,8 @@ public class Archipelago implements ModInitializer {
 			new Identifier("minecraft", "chests/stronghold_corridor"),
 			new Identifier("minecraft", "chests/stronghold_crossing")
 	);
+
+	public static LodestoneWorldParticleType DOT = new LodestoneWorldParticleType();
 
 	public static final RegistryKey<ItemGroup> CUSTOM_ITEM_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(MODID, "dev_itemgroup"));
 
@@ -90,6 +93,8 @@ public class Archipelago implements ModInitializer {
 		Registry.register(Registries.SOUND_EVENT, PRIVACY_GLASS_TOGGLE, PRIVACY_GLASS_TOGGLE_EVENT);
 		DelayedActionHandler.register();
 		lootTableModifiers();
+
+		DOT = Registry.register(Registries.PARTICLE_TYPE, id("dot"), DOT);
 
 		ArchipelagoPackets.CHANNEL.initServerListener();
 		ArchipelagoPackets.registerS2C();
