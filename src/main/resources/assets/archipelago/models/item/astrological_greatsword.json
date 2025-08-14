@@ -5,10 +5,6 @@
 		"0": "archipelago:item/astrological_greatsword",
 		"particle": "archipelago:item/astrological_greatsword"
 	},
-	"overrides": [
-		{"predicate": {"mialib:gui": 1}, "model": "archipelago:item/astrological_greatsword_gui"},
-		{"predicate": {"mialib:ground": 1}, "model": "archipelago:item/astrological_greatsword_gui"}
-	],
 	"elements": [
 		{
 			"name": "image_0",
@@ -488,6 +484,10 @@
 		}
 	],
 	"gui_light": "front",
+	"overrides": [
+		{"predicate": {"mialib:gui": 1}, "model": "archipelago:item/astrological_greatsword_gui"},
+		{"predicate": {"mialib:ground": 1}, "model": "archipelago:item/astrological_greatsword_gui"}
+	],
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [-44, -90, 0],
@@ -514,7 +514,8 @@
 			"scale": [0.5, 0.5, 0.5]
 		},
 		"fixed": {
-			"rotation": [0, 180, 0]
+			"translation": [1, 1, 0.5],
+			"scale": [1.8, 1.8, 0.9]
 		}
 	},
 	"groups": [

@@ -84,6 +84,9 @@ public class ConnectingPurpleLightningRenderer {
     }
 
     private static void drawLineWithFading(VertexConsumer buffer, Matrix4f matrix, Vec3d from, Vec3d to, Vec3d cameraPos, Vec3d origin, int age) {
+        Vec3d direction = to.subtract(from);
+        to = from.add(direction.multiply(2));
+
         double fromDist = from.distanceTo(origin);
         double toDist = to.distanceTo(origin);
         double maxDist = 2.0;

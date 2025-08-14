@@ -1,6 +1,9 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "archipelago:item/astrological_greatsword_gui"
-  }
+	"credit": "Made with Blockbench",
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "archipelago:item/astrological_greatsword_gui"
+	},
+	"gui_light": "front",
+	"display": {}
 }

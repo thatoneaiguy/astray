@@ -2,6 +2,7 @@ package com.thatoneaiguy.archipelago.init;
 
 import com.thatoneaiguy.archipelago.Archipelago;
 //import com.thatoneaiguy.archipelago.particle.VaseBreakParticle;
+import com.thatoneaiguy.archipelago.particle.OutwardRiftParticle;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.client.particle.FlameParticle;
@@ -13,9 +14,11 @@ import net.minecraft.util.Identifier;
 public class ArchipelagoParticles {
     public static final DefaultParticleType VASE_BREAK_PARTICLE = FabricParticleTypes.simple();
     public static final DefaultParticleType BLOOD = FabricParticleTypes.simple();
+    public static final DefaultParticleType OUTWARD_RIFT = FabricParticleTypes.simple();
+
 
     static void registerFactories() {
-        ParticleFactoryRegistry.getInstance().register(BLOOD, FlameParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(OUTWARD_RIFT, OutwardRiftParticle.Factory::new);
         //ParticleFactoryRegistry.getInstance().register(VASE_BREAK_PARTICLE, VaseBreakParticle.Factory::new);
     }
 
@@ -24,6 +27,8 @@ public class ArchipelagoParticles {
                 VASE_BREAK_PARTICLE);
         Registry.register(Registries.PARTICLE_TYPE, new Identifier(Archipelago.MODID, "blood"),
                 BLOOD);
+        Registry.register(Registries.PARTICLE_TYPE, new Identifier(Archipelago.MODID, "outward_rift"),
+                OUTWARD_RIFT);
     }
 }
 

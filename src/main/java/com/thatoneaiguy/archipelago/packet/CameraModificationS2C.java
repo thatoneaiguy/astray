@@ -88,8 +88,8 @@ public class CameraModificationS2C implements S2CPacket {
                                                 target,
                                                 user.getPos(),
                                                 new EaseOptions(
-                                                        Easings.INSTANCE::easeInOutSine,
-                                                        1500
+                                                        Easings.INSTANCE::easeInQuint,
+                                                        1500L
                                                 )
                                         )
                                 );
@@ -104,4 +104,3 @@ public class CameraModificationS2C implements S2CPacket {
         });
     }
 }
-

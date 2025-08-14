@@ -1,0 +1,10 @@
+{
+  "stages": [
+    {
+      "type": "veil:blit",
+      "shader": "archipelago:rift",
+      "in": "minecraft:main",
+      "out": "minecraft:main"
+    }
+  ]
+}

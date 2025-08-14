@@ -11,6 +11,9 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.UUID;
 
 public class TotemEntity extends HostileEntity {
     int ticks = 0;
@@ -29,6 +32,12 @@ public class TotemEntity extends HostileEntity {
     public ServerPlayerEntity getOwner() {
         return this.owner;
     }
+
+    @Nullable
+    public UUID getOwnerUuid() {
+        return owner == null ? null : owner.getUuid();
+    }
+
 
     public long getCreationTime() {
         return this.creationTime;

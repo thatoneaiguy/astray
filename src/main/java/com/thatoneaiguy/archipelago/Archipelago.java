@@ -8,7 +8,6 @@ import com.thatoneaiguy.archipelago.util.DelayedActionHandler;
 import com.thatoneaiguy.archipelago.util.runic.magic.RelikServerHandler;
 import com.thatoneaiguy.archipelago.world.feature.ArchipelagoConfiguredFeatures;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.biome.v1.BiomeModification;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;

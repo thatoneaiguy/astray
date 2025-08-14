@@ -1,0 +1,14 @@
+{
+  "vertex": "veil:blit_screen",
+  "fragment": "archipelago:rift",
+  "textures": {
+    "NoiseTexture": {
+      "type": "location",
+      "location": "archipelago:textures/shader/noise/noise1.png"
+    },
+    "DistortTexture": {
+      "type": "location",
+      "location": "archipelago:textures/shader/distort/distort1.png"
+    }
+  }
+}

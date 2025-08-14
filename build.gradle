@@ -16,6 +16,10 @@ loom {
 
 repositories {
 	maven {
+		name = 'BlameJared Maven (CrT / Bookshelf)'
+		url = 'https://maven.blamejared.com'
+	}
+	maven {
 		name = 'GeckoLib'
 		url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
 		content {
@@ -66,6 +70,10 @@ dependencies {
 	modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.rea_version}")
 
 	modApi include("xyz.amymialee:mialib:${mialib_version}")
+
+	modImplementation("foundry.veil:Veil-fabric-${project.minecraft_version}:${project.veil_version}") {
+		exclude group: "maven.modrinth"
+	}
 }
 
 processResources {

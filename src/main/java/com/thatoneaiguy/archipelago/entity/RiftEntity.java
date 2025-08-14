@@ -2,9 +2,12 @@ package com.thatoneaiguy.archipelago.entity;
 
 import com.thatoneaiguy.archipelago.Archipelago;
 import com.thatoneaiguy.archipelago.init.ArchipelagoPackets;
+import com.thatoneaiguy.archipelago.init.ArchipelagoParticles;
 import com.thatoneaiguy.archipelago.packet.CameraModificationS2C;
 import com.thatoneaiguy.archipelago.packet.ResetCameraModificationS2C;
 import com.thatoneaiguy.archipelago.util.HotbarRenderingUtil;
+import foundry.veil.api.client.render.VeilRenderSystem;
+import foundry.veil.api.client.render.deferred.light.PointLight;
 import nakern.be_camera.camera.CameraData;
 import nakern.be_camera.camera.CameraManager;
 import nakern.be_camera.camera.EaseOptions;
@@ -17,10 +20,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -34,30 +40,42 @@ import team.lodestar.lodestone.systems.particle.render_types.LodestoneWorldParti
 import team.lodestar.lodestone.systems.particle.world.type.LodestoneWorldParticleType;
 
 import java.awt.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 public class RiftEntity extends HostileEntity {
+    private boolean lightAdded = false;
+
+    PointLight light = new PointLight();
+
+    private float timer = 0;
+
     public RiftEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
-    private boolean expanding = false;
-    private int expandTicks = 1;
-    private float currentRadius = 2.0f;
-    private final Set<UUID> collectedPlayers = new HashSet<>();
-
     private boolean collected = false;
 
     private static int humSoundCooldown = 0;
+
+    public float getTimer() {
+        return timer;
+    }
+
+    public void addTimer(float time){
+        timer+=time;
+    }
 
     @Override
     public void tick() {
         if (this.getWorld().isClient) createLodestoneParticle(Archipelago.DOT, this.getPos(), (ClientWorld) this.getWorld(), 200, .1f);
 
+        light.setPosition(this.getX(), this.getY() - 1, this.getZ()).setBrightness(0.01f).setRadius(15f).setColor(255,121,242);
+        if (!lightAdded && this.getWorld().isClient) {
+            VeilRenderSystem.renderer().getDeferredRenderer().getLightRenderer().addLight(light);
+            lightAdded = true;
+        }
+
         checkAndDiscardIfNearby();
-        if (!this.getWorld().isClient) {
+        if (!this.getWorld().isClient && !collected) {
             PlayerEntity player = this.getWorld().getClosestPlayer(this, 2);
             if (player != null) {
                 Vec3d target = findValidCameraTarget(player, this.getWorld());
@@ -70,8 +88,19 @@ public class RiftEntity extends HostileEntity {
                     ArchipelagoPackets.CHANNEL.sendToClient(packet, (ServerPlayerEntity) player);
                 }
             }
+        } else {
+            for (int i = 0; i < 5; i++) {
+                this.getWorld().addParticle(
+                        ArchipelagoParticles.OUTWARD_RIFT,
+                        this.getX(),
+                        this.getY(),
+                        this.getZ(),
+                        (Math.random() - 0.5) / 2,  // velocityX
+                        (Math.random() - 0.5) / 2,  // velocityY (was fixed before)
+                        (Math.random() - 0.5) / 2// velocityZ
+                );
+            }
         }
-        spawnFissureParticles(getWorld(), getPos());
     }
 
     public void checkAndDiscardIfNearby() {
@@ -89,6 +118,38 @@ public class RiftEntity extends HostileEntity {
             this.discard();
         }
     }
+
+    public static void createExpandingShellParticles(LodestoneWorldParticleType particle, Vec3d center, ClientWorld world, float radius, int count) {
+        java.util.Random random = new java.util.Random();
+        Color lightPurple = new Color(237, 142, 249, 255);
+        Color darkPurple = new Color(102, 56, 128);
+
+        for (int i = 0; i < count; i++) {
+            double theta = random.nextDouble() * 2 * Math.PI;
+            double phi = Math.acos(2 * random.nextDouble() - 1);
+            double x = radius * Math.sin(phi) * Math.cos(theta);
+            double y = radius * Math.cos(phi);
+            double z = radius * Math.sin(phi) * Math.sin(theta);
+
+            Vec3d pos = center.add(x, y, z);
+            Vec3d velocity = new Vec3d(x, y, z).normalize().multiply(0.01);
+
+            WorldParticleBuilder.create(particle)
+                    .enableForcedSpawn()
+                    .setLightLevel(LightmapTextureManager.MAX_LIGHT_COORDINATE)
+                    .setScaleData(GenericParticleData.create(0.25f).build())
+                    .setTransparencyData(GenericParticleData.create(0.5f, 0f).setEasing(Easing.CIRC_IN).build())
+                    .setColorData(ColorParticleData.create(lightPurple, darkPurple).setEasing(Easing.CIRC_IN).build())
+                    .enableNoClip()
+                    .enableCull()
+                    .setLifetime(40)
+                    .setSpinData(SpinParticleData.create(0f, 0.3f).build())
+                    .setRenderType(LodestoneWorldParticleRenderType.LUMITRANSPARENT)
+                    .setMotion(velocity)
+                    .spawn(world, pos.x, pos.y, pos.z);
+        }
+    }
+
 
     public static void createLodestoneParticle(LodestoneWorldParticleType particle, Vec3d globalParticlePos, ClientWorld world, int lifetime, float scale) {
         java.util.Random random = new java.util.Random();
@@ -213,7 +274,7 @@ public class RiftEntity extends HostileEntity {
                                         target,
                                         user.getPos(),
                                         new EaseOptions(
-                                                Easings.INSTANCE::easeInOutSine,
+                                                Easings.INSTANCE::easeInOutBack,
                                                 1500
                                         )
                                 )
@@ -243,7 +304,7 @@ public class RiftEntity extends HostileEntity {
             // WISP core - dark aura
             WorldParticleBuilder.create(LodestoneParticleRegistry.WISP_PARTICLE)
                     .setTransparencyData(GenericParticleData.create(0.2f, 0f).setEasing(Easing.SINE_IN).build())
-                    .setScaleData(GenericParticleData.create(1.2f + world.getRandom().nextFloat() * 0.4f, 0f).setEasing(Easing.EXPO_OUT).build())
+                    .setScaleData(GenericParticleData.create(2.4f + world.getRandom().nextFloat() * 0.4f, 0f).setEasing(Easing.EXPO_OUT).build())
                     .setColorData(ColorParticleData.create(new Color(15, 15, 25), new Color(0, 0, 0))
                             .setCoefficient(1.5f).build())
                     .setLifetime(20 + world.getRandom().nextInt(10))
@@ -253,7 +314,7 @@ public class RiftEntity extends HostileEntity {
             // STAR glow highlights
             WorldParticleBuilder.create(LodestoneParticleRegistry.STAR_PARTICLE)
                     .setTransparencyData(GenericParticleData.create(0.4f, 0f).setEasing(Easing.CUBIC_IN).build())
-                    .setScaleData(GenericParticleData.create(0.4f + world.getRandom().nextFloat() * 0.1f, 0f).setEasing(Easing.SINE_IN).build())
+                    .setScaleData(GenericParticleData.create(0.8f + world.getRandom().nextFloat() * 0.1f, 0f).setEasing(Easing.SINE_IN).build())
                     .setSpinData(SpinParticleData.create(0.05f, 0.1f)
                             .setEasing(Easing.QUARTIC_IN_OUT).build())
                     .setColorData(ColorParticleData.create(Color.WHITE, new Color(180, 50, 255))
