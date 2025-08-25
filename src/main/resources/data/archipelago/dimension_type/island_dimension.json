@@ -1,0 +1,15 @@
+{
+  "ultrawarm": false,
+  "natural": true,
+  "coordinates": "world",
+  "bed_works": false,
+  "respawn_anchor_works": false,
+  "has_raids": false,
+  "logical_height": 256,
+  "infiniburn": "minecraft:infiniburn_end",
+  "ambient_light": 0.1,
+  "height": 256,
+  "min_y": 0,
+  "effects": "minecraft:end",
+  "shrunk": false
+}

@@ -89,6 +89,7 @@ public class Archipelago implements ModInitializer {
 		ArchipelagoParticles.register();
 		ArchipelagoDamageSources.register();
 		ArchipelagoEntities.register();
+		ArchipelagoWorldGen.register();
 		Registry.register(Registries.SOUND_EVENT, PRIVACY_GLASS_TOGGLE, PRIVACY_GLASS_TOGGLE_EVENT);
 		DelayedActionHandler.register();
 		lootTableModifiers();
