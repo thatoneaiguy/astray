@@ -21,5 +21,4 @@ public interface ArchipelagoBlockEntities {
     static void initialize() {
         BLOCK_ENTITIES.keySet().forEach(entityType -> Registry.register(Registries.BLOCK_ENTITY_TYPE, BLOCK_ENTITIES.get(entityType), entityType));
     }
-
 }

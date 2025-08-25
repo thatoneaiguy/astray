@@ -12,13 +12,6 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 
-	"custom": {
-		"modmenu": {
-			"parent": "koil",
-			"update_checker": true
-		}
-	},
-
 	"license": "DONT STEAL MY SHIT (D.S.M.S)",
 	"icon": "assets/archipelago/icon.png",
 	"environment": "*",
@@ -28,6 +21,9 @@
 		],
 		"client": [
 			"com.thatoneaiguy.archipelago.ArchipelagoClient"
+		],
+		"cardinal-components": [
+			"com.thatoneaiguy.archipelago.init.ArchipelagoComponents"
 		]
 	},
 	"mixins": [
@@ -42,5 +38,10 @@
 	},
 	"suggests": {
 		"another-mod": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"archipelago:player_skills"
+		]
 	}
 }
