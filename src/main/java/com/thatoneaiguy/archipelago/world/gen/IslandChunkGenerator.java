@@ -30,7 +30,12 @@ public class IslandChunkGenerator extends ChunkGenerator {
     private final NoiseSampler noiseSampler;
     private final long seed;
 
-    public static final Codec<IslandChunkGenerator> CODEC = null; // Implement codec for JSON reference
+    public static final Codec<IslandChunkGenerator> CODEC = RecordCodecBuilder.create(instance ->
+            instance.group(
+                    BiomeSource.CODEC.fieldOf("biome_source").forGetter(IslandChunkGenerator::getBiomeSource),
+                    Codec.LONG.fieldOf("seed").forGetter(g -> g.seed)
+            ).apply(instance, IslandChunkGenerator::new)
+    );
 
     public IslandChunkGenerator(BiomeSource biomeSource, long seed) {
         super(biomeSource);
