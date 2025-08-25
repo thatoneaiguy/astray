@@ -72,7 +72,32 @@ public class IslandChunkGenerator extends ChunkGenerator {
 
     @Override
     public CompletableFuture<Chunk> populateNoise(Executor executor, Blender blender, NoiseConfig noiseConfig, StructureAccessor structureAccessor, Chunk chunk) {
-        return null;
+        return CompletableFuture.supplyAsync(() -> {
+            int chunkX = chunk.getPos().x * 16;
+            int chunkZ = chunk.getPos().z * 16;
+
+            for (int x = 0; x < 16; x++) {
+                for (int z = 0; z < 16; z++) {
+                    int worldX = chunkX + x;
+                    int worldZ = chunkZ + z;
+
+                    int[] layers = {80, 140, 200};
+                    for (int baseY : layers) {
+                        double noise = noiseSampler.sample(worldX, worldZ, baseY);
+                        if (noise > 0.65) {
+                            int top = baseY + (int)(noise * 20);
+                            for (int y = top; y > top - 6; y--) {
+                                if (y >= 0 && y < chunk.getHeight()) {
+                                    chunk.setBlockState(new BlockPos(x, y, z), Blocks.END_STONE.getDefaultState(), false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            return chunk;
+        }, executor);
     }
 
     @Override
